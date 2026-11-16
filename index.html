@@ -81,6 +81,7 @@ body{background:var(--bg-warm);font-family:'Jost',sans-serif;color:var(--dark);m
 
 /* Paquetes */
 .promo-bento{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.promo-bento.single{grid-template-columns:1fr}
 .promo-btn{padding:16px 8px;background:var(--bg-warm);border:1px solid var(--card-border);border-radius:var(--radius-sm);font-family:'Jost',sans-serif;font-size:.8rem;font-weight:500;color:var(--muted);cursor:pointer;transition:all .2s;text-align:center;line-height:1.4;position:relative}
 .promo-btn:hover{border-color:var(--dark);color:var(--dark)}
 .promo-btn.active{background:var(--dark);color:#fff;border-color:var(--dark);box-shadow:0 6px 18px rgba(0,0,0,.14);transform:translateY(-1px)}
@@ -420,7 +421,7 @@ Finalizar por WhatsApp
 <div class="card" id="card-promo">
 <div class="section-label"><span class="step-badge" id="step-badge-promo">3</span> ¿Deseas un paquete? (Opcional)</div>
 <p class="promo-instruction">⚠️ <strong>Importante:</strong> Todos los aromas del paquete comparten la misma presentación, modelo de frasco y concentración.</p>
-<div class="promo-bento">
+<div class="promo-bento" id="promo-bento">
 <button class="promo-btn promo-100" id="promo-100-btn" onclick="startPromo('100ml')">4 × 3<br>100ml <small id="promo-100-price"></small></button>
 <button class="promo-btn promo-30" id="promo-30-btn" onclick="startPromo('30ml')" style="position:relative;">6 × 5<br>30ml <small id="promo-30-price"></small><span class="promo-badge-bestseller">Más vendido</span></button>
 </div>
@@ -718,6 +719,7 @@ function goToStep(n) {
   window.scrollTo({top: 0, behavior: 'smooth'});
   updateStepper();
   updateBottomBar();
+  if (n === 3) updatePromoAvailability();
   if (n === 5) renderSummary();
 }
 function nextStep() {
@@ -807,12 +809,14 @@ function selectSize(size) {
   updatePriceDisplay();
   if (promoState.active) { cancelPromo(); showToast('Paquete cancelado al cambiar presentación'); }
   updateBottomBar();
+  updatePromoAvailability();
 }
 function updatePriceDisplay() {
   const price = getBasePrice();
   document.getElementById('selected-price-display').textContent = '$' + price.toFixed(2) + ' MXN';
   const fLabel = document.getElementById('feromonas-price-label');
   if (fLabel) fLabel.textContent = '+$' + (price * FEROMONAS_RATE).toFixed(2) + ' (6%)';
+  updatePromoPrices();
 }
 
 /* ==========================================================================
@@ -825,6 +829,32 @@ function selectConc(conc) {
   renderModelGrid();
   updatePriceDisplay();
   updateBottomBar();
+}
+
+/* ==========================================================================
+   DISPONIBILIDAD DE PAQUETE (solo el del tamaño elegido)
+   ========================================================================== */
+function updatePromoAvailability() {
+  const btn30 = document.getElementById('promo-30-btn');
+  const btn100 = document.getElementById('promo-100-btn');
+  const bento = document.getElementById('promo-bento');
+  if (!btn30 || !btn100 || !bento) return;
+  if (selectedSize === '30ml') {
+    btn30.style.display = '';
+    btn100.style.display = 'none';
+  } else {
+    btn30.style.display = 'none';
+    btn100.style.display = '';
+  }
+  bento.classList.add('single');
+  updatePromoPrices();
+}
+function updatePromoPrices() {
+  const base = getBasePrice();
+  const el30 = document.getElementById('promo-30-price');
+  const el100 = document.getElementById('promo-100-price');
+  if (el30) el30.textContent = selectedSize === '30ml' ? 'Paga 5 · $' + (base * 5).toFixed(2) : '';
+  if (el100) el100.textContent = selectedSize === '100ml' ? 'Paga 3 · $' + (base * 3).toFixed(2) : '';
 }
 
 /* ==========================================================================
@@ -1472,6 +1502,7 @@ window.addEventListener('load', () => {
   renderModelGrid();
   renderBodycare();
   updatePriceDisplay();
+  updatePromoAvailability();
   updateStepper();
   updateBottomBar();
   switchTab('perfumes');
