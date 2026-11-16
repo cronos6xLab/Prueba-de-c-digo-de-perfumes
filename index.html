@@ -134,6 +134,23 @@ body{background:var(--bg-warm);font-family:'Jost',sans-serif;color:var(--dark);m
 .aroma-feromonas-row{display:none;margin-top:12px;padding-top:12px;border-top:1px solid var(--card-border)}
 .aroma-feromonas-row.visible{display:block}
 
+/* Aroma progress panel (step 4) */
+.aroma-progress-card{background:#fffdf5;border:1px solid #e8dfc3;border-left:3px solid var(--gold);border-radius:var(--radius-sm);padding:12px 14px;margin-bottom:14px}
+.aroma-progress-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.aroma-progress-title{font-size:.78rem;font-weight:600;letter-spacing:.3px;color:var(--dark);display:flex;align-items:center;gap:6px}
+.aroma-progress-count{font-size:.72rem;font-weight:600;color:var(--gold);background:#fff;border:1px solid rgba(184,151,90,.35);padding:2px 9px;border-radius:var(--radius-pill);letter-spacing:.3px}
+.aroma-progress-bar{height:6px;background:#f0e9d6;border-radius:var(--radius-pill);overflow:hidden;margin-bottom:8px}
+.aroma-progress-bar-fill{height:100%;background:var(--gold);border-radius:var(--radius-pill);transition:width .35s}
+.aroma-progress-list{display:flex;flex-direction:column;gap:5px}
+.aroma-progress-row{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:.72rem;color:var(--dark);background:#fff;border:1px solid #f0e9d6;border-radius:var(--radius-sm);padding:6px 10px}
+.aroma-progress-row-code{font-weight:600;background:#f0ede7;padding:1px 6px;border-radius:var(--radius-pill);font-size:.62rem;flex-shrink:0;letter-spacing:.2px}
+.aroma-progress-row-name{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:.72rem}
+.aroma-progress-row-qty{font-weight:600;font-size:.72rem;color:var(--gold);flex-shrink:0}
+.aroma-progress-empty{font-size:.72rem;color:var(--muted);text-align:center;padding:8px}
+.aroma-progress-missing{font-size:.7rem;color:var(--muted);text-align:center;margin-top:10px;padding-top:10px;border-top:1px dashed #e8dfc3;line-height:1.4}
+.aroma-progress-missing strong{color:var(--gold);font-size:.8rem}
+.aroma-progress-complete{font-size:.72rem;color:#1a6638;text-align:center;margin-top:10px;padding:8px;background:#f0faf4;border:1px solid #a8dfc0;border-radius:var(--radius-sm);font-weight:600;letter-spacing:.2px}
+
 /* Búsqueda inline para modal de cuidado corporal */
 .search-results-inline{background:#fff;border:1px solid var(--card-border);border-radius:var(--radius-sm);margin-top:6px;overflow:hidden;display:none;max-height:200px;overflow-y:auto}
 .search-results-inline.visible{display:block}
@@ -313,6 +330,33 @@ body{background:var(--bg-warm);font-family:'Jost',sans-serif;color:var(--dark);m
 .info-modal-close{background:none;border:none;font-size:1.2rem;color:var(--muted);cursor:pointer;padding:4px}
 .info-modal-body{font-size:.8rem;color:var(--muted);line-height:1.7;border-top:1px solid #f0ede7;padding-top:12px}
 .info-modal-badge{display:inline-block;font-size:.58rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);border:1px solid rgba(184,151,90,.4);border-radius:3px;padding:2px 7px;margin-bottom:10px}
+
+/* Confirm order modal */
+.confirm-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:2200;opacity:0;pointer-events:none;transition:opacity .25s;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.confirm-modal-overlay.open{opacity:1;pointer-events:auto}
+.confirm-modal{position:fixed;bottom:0;left:50%;transform:translateX(-50%) translateY(30px);width:100%;max-width:500px;background:#fff;border-radius:20px 20px 0 0;padding:16px 20px 24px;z-index:2201;box-shadow:0 -12px 40px rgba(0,0,0,.2);transition:transform .3s,opacity .25s;opacity:0;max-height:94vh;display:flex;flex-direction:column}
+.confirm-modal-overlay.open .confirm-modal{transform:translateX(-50%) translateY(0);opacity:1}
+.confirm-modal-handle{width:36px;height:4px;background:#e0dcd4;border-radius:9999px;margin:0 auto 12px;flex-shrink:0}
+.confirm-modal-icon{text-align:center;font-size:2rem;margin-bottom:4px;line-height:1}
+.confirm-modal-title{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:500;letter-spacing:1px;text-align:center;margin-bottom:3px;color:var(--dark);line-height:1.2}
+.confirm-modal-subtitle{font-size:.74rem;color:var(--muted);text-align:center;margin-bottom:14px;letter-spacing:.3px;line-height:1.4}
+.confirm-summary{background:var(--bg-warm);border:1px solid var(--card-border);border-radius:var(--radius-sm);padding:8px 12px;margin-bottom:12px;flex:1;overflow-y:auto;min-height:80px;max-height:42vh}
+.confirm-summary-item{padding:7px 0;border-bottom:1px dashed #e0dcd4;font-size:.78rem;color:var(--dark);display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.confirm-summary-item:last-of-type{border-bottom:none}
+.confirm-summary-item-name{flex:1;min-width:0;line-height:1.35;font-weight:500}
+.confirm-summary-item-sub{font-size:.66rem;color:var(--muted);margin-top:2px;display:block;font-weight:400;line-height:1.4}
+.confirm-summary-item-price{font-weight:600;white-space:nowrap;font-size:.8rem;color:var(--dark);flex-shrink:0}
+.confirm-summary-total{display:flex;justify-content:space-between;align-items:baseline;padding-top:10px;margin-top:6px;border-top:2px solid var(--gold)}
+.confirm-summary-total span{font-size:.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);font-weight:600}
+.confirm-summary-total strong{font-family:'Cormorant Garamond',serif;font-size:1.65rem;font-weight:500;color:var(--dark);letter-spacing:.5px}
+.confirm-actions{display:flex;flex-direction:column;gap:7px;flex-shrink:0}
+.confirm-btn-primary{background:var(--green-wa);color:#fff;border:none;border-radius:var(--radius-sm);padding:14px;font-family:'Jost',sans-serif;font-size:.8rem;font-weight:500;letter-spacing:1.8px;text-transform:uppercase;cursor:pointer;width:100%;display:flex;align-items:center;justify-content:center;gap:8px;transition:background .2s}
+.confirm-btn-primary:hover{background:var(--green-wa-dark)}
+.confirm-btn-primary:active{transform:scale(.98)}
+.confirm-btn-secondary{background:transparent;color:var(--dark);border:1px solid var(--card-border);border-radius:var(--radius-sm);padding:11px;font-family:'Jost',sans-serif;font-size:.72rem;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;width:100%;transition:all .2s}
+.confirm-btn-secondary:hover{background:#f0ede7;border-color:var(--dark)}
+.confirm-btn-secondary:active{transform:scale(.98)}
+
 @media screen and (-webkit-min-device-pixel-ratio:0){input[type="text"],input[type="search"],textarea,select{font-size:16px!important}}
 </style>
 </head>
@@ -439,6 +483,18 @@ Finalizar por WhatsApp
 <div class="wizard-step" data-step="4">
 <div class="card" id="card-aroma">
 <div class="section-label"><span class="step-badge" id="step-badge-aroma">4</span> <span id="aroma-step-title">Selecciona tu aroma</span> <button class="info-btn unseen" id="info-btn-aromas" onclick="openInfoModal('aromas')">i</button></div>
+
+<!-- Panel de progreso del paquete -->
+<div class="aroma-progress-card" id="aroma-progress-card" style="display:none;">
+<div class="aroma-progress-header">
+<span class="aroma-progress-title">🎁 Tu paquete</span>
+<span class="aroma-progress-count" id="aroma-progress-count">0/6</span>
+</div>
+<div class="aroma-progress-bar"><div class="aroma-progress-bar-fill" id="aroma-progress-fill" style="width:0%"></div></div>
+<div class="aroma-progress-list" id="aroma-progress-list"></div>
+<div class="aroma-progress-missing" id="aroma-progress-missing"></div>
+</div>
+
 <div class="search-wrap">
 <span class="search-icon">🔍</span>
 <input type="text" id="search-input" placeholder="Buscar por código, marca, familia olfativa...">
@@ -604,6 +660,25 @@ Finalizar por WhatsApp
 </div>
 </div>
 
+<!-- ============== MODAL CONFIRMACIÓN DE PEDIDO ============== -->
+<div class="confirm-modal-overlay" id="confirm-order-overlay" onclick="closeConfirmOrder()">
+<div class="confirm-modal" onclick="event.stopPropagation()">
+<div class="confirm-modal-handle"></div>
+<div class="confirm-modal-icon">📋</div>
+<div class="confirm-modal-title">¿Tu pedido está correcto?</div>
+<div class="confirm-modal-subtitle">Revisa los detalles antes de enviarlo por WhatsApp</div>
+<div class="confirm-summary" id="confirm-summary"></div>
+<div class="confirm-actions">
+<button class="confirm-btn-primary" onclick="confirmSendWhatsApp()">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+Sí, enviar pedido
+</button>
+<button class="confirm-btn-secondary" onclick="closeConfirmOrderAndEdit()">Editar / agregar más productos</button>
+<button class="confirm-btn-secondary" onclick="closeConfirmOrder()">Volver al carrito</button>
+</div>
+</div>
+</div>
+
 <script>
 /* ==========================================================================
    CONFIGURACIÓN
@@ -720,6 +795,7 @@ function goToStep(n) {
   updateStepper();
   updateBottomBar();
   if (n === 3) updatePromoAvailability();
+  if (n === 4) updateAromaProgress();
   if (n === 5) renderSummary();
 }
 function nextStep() {
@@ -855,6 +931,49 @@ function updatePromoPrices() {
   const el100 = document.getElementById('promo-100-price');
   if (el30) el30.textContent = selectedSize === '30ml' ? 'Paga 5 · $' + (base * 5).toFixed(2) : '';
   if (el100) el100.textContent = selectedSize === '100ml' ? 'Paga 3 · $' + (base * 3).toFixed(2) : '';
+}
+
+/* ==========================================================================
+   PROGRESO DEL PAQUETE (paso 4)
+   ========================================================================== */
+function updateAromaProgress() {
+  const card = document.getElementById('aroma-progress-card');
+  if (!card) return;
+  if (!promoState.active) {
+    card.style.display = 'none';
+    return;
+  }
+  card.style.display = 'block';
+
+  const total = getTotalPromoUnits();
+  const required = promoState.required;
+  const pct = Math.min(100, (total / required) * 100);
+
+  document.getElementById('aroma-progress-count').textContent = total + '/' + required;
+  document.getElementById('aroma-progress-fill').style.width = pct + '%';
+
+  const listEl = document.getElementById('aroma-progress-list');
+  if (promoState.selectedAromas.length === 0) {
+    listEl.innerHTML = '<div class="aroma-progress-empty">Aún no has añadido ningún aroma</div>';
+  } else {
+    listEl.innerHTML = promoState.selectedAromas.map(item => `
+      <div class="aroma-progress-row">
+        <span class="aroma-progress-row-code">${item.aroma.codigo}</span>
+        <span class="aroma-progress-row-name">${item.aroma.nombre}${item.withFeromonas ? ' ✨F' : ''}</span>
+        <span class="aroma-progress-row-qty">×${item.quantity}</span>
+      </div>
+    `).join('');
+  }
+
+  const missingEl = document.getElementById('aroma-progress-missing');
+  if (total === required) {
+    missingEl.className = 'aroma-progress-complete';
+    missingEl.innerHTML = '✓ Paquete completo — puedes continuar';
+  } else {
+    missingEl.className = 'aroma-progress-missing';
+    const missing = required - total;
+    missingEl.innerHTML = 'Faltan <strong>' + missing + '</strong> aroma' + (missing > 1 ? 's' : '') + ' por añadir';
+  }
 }
 
 /* ==========================================================================
@@ -1120,6 +1239,7 @@ function updatePromoUI() {
     const falta = required - totalUnits;
     document.getElementById('promo-hint-text').textContent = 'Faltan ' + falta + ' unidad' + (falta>1?'es':'') + ' por asignar';
   }
+  updateAromaProgress();
   updateBottomBar();
 }
 function addToPromoSelection(aroma) {
@@ -1166,6 +1286,7 @@ function cancelPromo() {
   document.querySelectorAll('.promo-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('promo-status').classList.remove('visible');
   document.getElementById('promo-hint').classList.remove('visible');
+  updateAromaProgress();
   updateBottomBar();
 }
 
@@ -1372,10 +1493,62 @@ function calculateDiscount(subtotal) {
 }
 
 /* ==========================================================================
-   WHATSAPP
+   CONFIRMACIÓN DE PEDIDO + WHATSAPP
    ========================================================================== */
+function openConfirmOrder() {
+  const subtotal = state.cartItems.reduce((s,i) => s + i.total, 0);
+  const discount = calculateDiscount(subtotal);
+  const total = subtotal - discount;
+  const hasPromo = state.cartItems.some(i => i.type === 'promo');
+  const freeShip = total >= 1200 || hasPromo;
+  const shipCost = freeShip ? 0 : 149;
+  const grand = total + shipCost;
+
+  let html = '';
+  state.cartItems.forEach((item) => {
+    if (item.type === 'individual') {
+      html += `<div class="confirm-summary-item"><div class="confirm-summary-item-name">[${item.aroma.codigo}] ${item.aroma.nombre}<span class="confirm-summary-item-sub">${item.modelName} · ${item.concentration}${item.withFeromonas ? ' · +Feromonas' : ''} ×${item.quantity}</span></div><span class="confirm-summary-item-price">$${item.total.toFixed(2)}</span></div>`;
+    } else if (item.type === 'promo') {
+      const aromasText = item.aromas.map(a => a.codigo + ' ×' + a.quantity + (a.withFeromonas ? ' F' : '')).join(' · ');
+      html += `<div class="confirm-summary-item"><div class="confirm-summary-item-name">🎁 Paquete ${item.volume} (${item.required}×${item.payFor})<span class="confirm-summary-item-sub">${aromasText}</span></div><span class="confirm-summary-item-price">$${item.total.toFixed(2)}</span></div>`;
+    } else if (item.type === 'bodycare') {
+      html += `<div class="confirm-summary-item"><div class="confirm-summary-item-name">🧴 ${item.product.name}${item.aroma ? ' · [' + item.aroma.codigo + '] ' + item.aroma.nombre : ''}<span class="confirm-summary-item-sub">Cuidado corporal ×${item.quantity}</span></div><span class="confirm-summary-item-price">$${item.total.toFixed(2)}</span></div>`;
+    }
+  });
+
+  if (state.appliedCoupon && discount > 0) {
+    html += `<div class="confirm-summary-item"><div class="confirm-summary-item-name">🏷️ Descuento aplicado<span class="confirm-summary-item-sub">Código ${state.appliedCoupon.code}</span></div><span class="confirm-summary-item-price" style="color:#1a6638;">−$${discount.toFixed(2)}</span></div>`;
+  }
+
+  html += `<div class="confirm-summary-item"><div class="confirm-summary-item-name">🚚 Envío</div><span class="confirm-summary-item-price" style="color:${freeShip?'#1a6638':'var(--dark)'};">${freeShip ? 'GRATIS' : '$' + shipCost.toFixed(2)}</span></div>`;
+
+  html += `<div class="confirm-summary-total"><span>Total</span><strong>$${grand.toFixed(2)}</strong></div>`;
+
+  document.getElementById('confirm-summary').innerHTML = html;
+  document.getElementById('confirm-order-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeConfirmOrder() {
+  document.getElementById('confirm-order-overlay').classList.remove('open');
+  document.body.style.overflow = 'hidden'; // keep cart drawer scroll lock
+}
+
+function closeConfirmOrderAndEdit() {
+  document.getElementById('confirm-order-overlay').classList.remove('open');
+  closeCart();
+  document.body.style.overflow = '';
+  showToast('Puedes seguir agregando productos');
+}
+
 function sendToWhatsApp() {
   if (state.cartItems.length === 0) { showToast('El carrito está vacío'); return; }
+  openConfirmOrder();
+}
+
+function confirmSendWhatsApp() {
+  document.getElementById('confirm-order-overlay').classList.remove('open');
+
   const subtotal = state.cartItems.reduce((s,i) => s + i.total, 0);
   const discount = calculateDiscount(subtotal);
   const total = subtotal - discount;
@@ -1403,7 +1576,11 @@ function sendToWhatsApp() {
   msg += '💰 *TOTAL: $' + grand.toFixed(2) + ' MXN*\n━━━━━━━━━━━━━━━━━━━━━\n\n📋 _Al finalizar el pago recibirás un formulario._';
   const url = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(msg);
   showToast('Abriendo WhatsApp...');
-  setTimeout(() => window.open(url,'_blank'), 600);
+  setTimeout(() => {
+    window.open(url,'_blank');
+    closeCart();
+    document.body.style.overflow = '';
+  }, 400);
 }
 
 /* ==========================================================================
@@ -1441,7 +1618,17 @@ function closeInfoModal(id) {
   document.body.style.overflow = '';
 }
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') { closeInfoModal('legal'); closeInfoModal('aromas'); closeCart(); closePromoGuide(); closeBodycareAromaModal(); }
+  if (e.key === 'Escape') {
+    closeInfoModal('legal');
+    closeInfoModal('aromas');
+    closePromoGuide();
+    closeBodycareAromaModal();
+    if (document.getElementById('confirm-order-overlay').classList.contains('open')) {
+      closeConfirmOrder();
+    } else {
+      closeCart();
+    }
+  }
 });
 
 /* ==========================================================================
