@@ -23,27 +23,38 @@ body{background:var(--bg-warm);font-family:'Jost',sans-serif;color:var(--dark);m
 .category-tab.active{background:var(--dark);color:#fff;border-color:var(--dark)}
 .tab-content{display:none}
 .tab-content.active{display:block}
-.stepper-grid{display:flex;justify-content:center;align-items:flex-start;gap:0;padding:8px 8px 6px;background:var(--bg-warm);position:sticky;top:38px;z-index:99}
-.stepper-col{display:flex;flex-direction:column;align-items:center;gap:5px;width:58px;transition:all .3s}
-.stepper-dot{width:32px;height:32px;border-radius:50%;background:#e8e4dc;color:#999;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:600;transition:all .35s;flex-shrink:0}
-.stepper-dot.completed{background:var(--dark);color:#fff;animation:dotPop .4s}
-.stepper-dot.active{background:var(--dark);color:#fff;box-shadow:0 0 0 6px rgba(17,17,17,.08);transform:scale(1.12)}
-.stepper-col span{font-size:.52rem;letter-spacing:.4px;text-transform:uppercase;color:#aaa;text-align:center;line-height:1.2;font-weight:500;transition:color .3s}
+
+/* Stepper */
+.stepper-grid{display:flex;justify-content:center;align-items:flex-start;gap:0;padding:8px 6px 10px;background:var(--bg-warm);position:sticky;top:38px;z-index:99}
+.stepper-col{display:flex;flex-direction:column;align-items:center;gap:5px;width:52px;transition:all .3s;cursor:pointer}
+.stepper-col.locked{cursor:not-allowed;opacity:.55}
+.stepper-dot{width:30px;height:30px;border-radius:50%;background:#e8e4dc;color:#999;display:flex;align-items:center;justify-content:center;font-size:.68rem;font-weight:600;transition:all .35s;flex-shrink:0}
+.stepper-dot.completed{background:var(--dark);color:#fff}
+.stepper-dot.active{background:var(--dark);color:#fff;box-shadow:0 0 0 5px rgba(17,17,17,.08);transform:scale(1.1)}
+.stepper-col span{font-size:.5rem;letter-spacing:.3px;text-transform:uppercase;color:#aaa;text-align:center;line-height:1.2;font-weight:500;transition:color .3s}
 .stepper-col.completed span{color:var(--dark);font-weight:600}
-.stepper-line{width:20px;height:1.5px;background:#e0dcd4;margin-top:15px;flex-shrink:0;transition:background .35s}
+.stepper-line{width:14px;height:1.5px;background:#e0dcd4;margin-top:14px;flex-shrink:0;transition:background .35s}
 .stepper-line.done{background:var(--dark)}
-@keyframes dotPop{0%{transform:scale(1)}40%{transform:scale(1.35)}100%{transform:scale(1)}}
-.container{max-width:500px;margin:0 auto;padding:0 14px 160px}
-.card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius-card);box-shadow:var(--card-shadow);padding:20px 18px;margin-bottom:16px;transition:transform .2s,box-shadow .2s}
-.product-image-wrap{position:relative;width:100%;height:320px;overflow:hidden;border-radius:var(--radius-card);margin-bottom:8px}
+
+/* Container / cards */
+.container{max-width:500px;margin:0 auto;padding:10px 14px 160px}
+.card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius-card);box-shadow:var(--card-shadow);padding:20px 18px;margin-bottom:16px}
+.product-image-wrap{position:relative;width:100%;height:240px;overflow:hidden;border-radius:var(--radius-card);margin-bottom:8px}
 .product-image-wrap img{width:100%;height:100%;object-fit:cover}
 .rating-badge{position:absolute;bottom:14px;left:14px;background:rgba(255,255,255,.95);border:1px solid var(--card-border);color:var(--dark);padding:6px 12px;border-radius:var(--radius-sm);font-size:.75rem;letter-spacing:1px;display:flex;align-items:center;gap:6px;box-shadow:0 2px 10px rgba(0,0,0,.05)}
-.product-info{padding:8px 4px 4px;text-align:center}
-.product-info h2{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;letter-spacing:2px;color:var(--dark);margin-bottom:4px}
-.product-subtitle{font-size:.7rem;color:var(--muted);letter-spacing:3px;text-transform:uppercase}
-.section-label{font-size:.72rem;text-transform:uppercase;letter-spacing:2.5px;color:var(--muted);margin-bottom:12px;font-weight:500;display:flex;align-items:center;gap:8px}
+.product-info{padding:8px 4px 16px;text-align:center}
+.product-info h2{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;letter-spacing:2px;color:var(--dark);margin-bottom:4px}
+.product-subtitle{font-size:.65rem;color:var(--muted);letter-spacing:3px;text-transform:uppercase}
+.section-label{font-size:.72rem;text-transform:uppercase;letter-spacing:2.5px;color:var(--muted);margin-bottom:14px;font-weight:500;display:flex;align-items:center;gap:8px}
 .step-badge{background:var(--dark);color:#fff;width:20px;height:20px;display:flex;align-items:center;justify-content:center;border-radius:50%;font-size:.6rem;font-weight:600;flex-shrink:0}
 .step-badge.done{background:#2e7d32}
+
+/* Wizard */
+.wizard-step{display:none}
+.wizard-step.active{display:block;animation:stepFadeIn .35s ease}
+@keyframes stepFadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* Size + Model */
 .size-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
 .size-btn{padding:14px 6px;border:1px solid var(--card-border);border-radius:var(--radius-sm);background:var(--bg-warm);font-family:'Jost',sans-serif;font-size:.85rem;font-weight:500;color:var(--muted);cursor:pointer;transition:all .2s;text-align:center;position:relative}
 .size-btn:hover{border-color:var(--dark);color:var(--dark)}
@@ -55,9 +66,10 @@ body{background:var(--bg-warm);font-family:'Jost',sans-serif;color:var(--dark);m
 .model-card img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px;margin-bottom:6px;background:#f0ede7;display:block}
 .model-card .model-name{font-size:.66rem;font-weight:500;line-height:1.3;margin-bottom:3px;color:var(--dark)}
 .model-card .model-price{font-size:.75rem;font-weight:600;color:var(--gold)}
-.price-shimmer{text-align:center;font-size:1.2rem;font-weight:600;letter-spacing:1px;color:var(--dark);margin-top:12px;background:linear-gradient(90deg,#b8975a 0%,#d4b483 50%,#b8975a 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 2.5s ease-in-out infinite}
-@keyframes shimmer{0%,100%{opacity:.85}50%{opacity:1}}
-.price-note{text-align:center;font-size:.62rem;color:var(--muted);letter-spacing:.5px;margin-top:4px}
+.price-shimmer{text-align:center;font-size:1.25rem;font-weight:600;letter-spacing:1px;color:var(--dark);margin-top:14px;background:linear-gradient(90deg,#b8975a 0%,#d4b483 50%,#b8975a 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.price-note{text-align:center;font-size:.62rem;color:var(--muted);letter-spacing:.5px;margin-top:6px}
+
+/* Concentración */
 .conc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
 .conc-btn{padding:14px 10px;border:1px solid var(--card-border);border-radius:var(--radius-sm);background:var(--bg-warm);font-family:'Jost',sans-serif;font-size:.75rem;font-weight:500;color:var(--muted);cursor:pointer;transition:all .2s;text-align:center;line-height:1.4;display:flex;flex-direction:column;align-items:center;gap:4px}
 .conc-btn:hover{border-color:var(--dark);color:var(--dark)}
@@ -66,13 +78,18 @@ body{background:var(--bg-warm);font-family:'Jost',sans-serif;color:var(--dark);m
 .conc-dots span{width:7px;height:7px;border-radius:50%;background:#c5bfb5;transition:background .2s}
 .conc-btn.active .conc-dots span{background:#fff}
 .conc-btn small{display:block;font-size:.6rem;opacity:.7;font-weight:400}
+
+/* Paquetes */
 .promo-bento{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.promo-btn{padding:14px 8px;background:var(--bg-warm);border:1px solid var(--card-border);border-radius:var(--radius-sm);font-family:'Jost',sans-serif;font-size:.78rem;font-weight:500;color:var(--muted);cursor:pointer;transition:all .2s;text-align:center;line-height:1.4;opacity:.55;position:relative}
-.promo-btn.active-vol{opacity:1;border-color:#c5bfb5;color:var(--dark)}
-.promo-btn.active{background:var(--dark);color:#fff;border-color:var(--dark);opacity:1;box-shadow:0 6px 18px rgba(0,0,0,.14);transform:translateY(-1px)}
-.promo-btn small{display:block;font-size:.68rem;opacity:.75;margin-top:2px;font-weight:400}
+.promo-btn{padding:16px 8px;background:var(--bg-warm);border:1px solid var(--card-border);border-radius:var(--radius-sm);font-family:'Jost',sans-serif;font-size:.8rem;font-weight:500;color:var(--muted);cursor:pointer;transition:all .2s;text-align:center;line-height:1.4;position:relative}
+.promo-btn:hover{border-color:var(--dark);color:var(--dark)}
+.promo-btn.active{background:var(--dark);color:#fff;border-color:var(--dark);box-shadow:0 6px 18px rgba(0,0,0,.14);transform:translateY(-1px)}
+.promo-btn small{display:block;font-size:.7rem;opacity:.75;margin-top:2px;font-weight:400}
+.promo-btn.active small{opacity:1}
 .promo-badge-bestseller{position:absolute;top:-8px;right:-4px;background:var(--gold);color:#fff;font-size:.55rem;letter-spacing:1px;text-transform:uppercase;padding:2px 7px;border-radius:3px;font-weight:600}
 .promo-instruction{font-size:.72rem;color:var(--dark);background:#fffdf5;border:1px solid #e8dfc3;border-left:3px solid var(--gold);padding:10px 12px;border-radius:var(--radius-sm);margin-bottom:12px;line-height:1.4}
+.promo-skip-btn{width:100%;margin-top:10px;padding:12px;background:transparent;color:var(--muted);border:1px dashed var(--card-border);border-radius:var(--radius-sm);font-family:'Jost',sans-serif;font-size:.74rem;font-weight:500;letter-spacing:1px;cursor:pointer;transition:all .2s}
+.promo-skip-btn:hover{border-color:var(--dark);color:var(--dark)}
 .promo-status{margin-top:12px;background:var(--bg-warm);border:1px solid var(--card-border);padding:14px;border-radius:var(--radius-sm);font-size:.82rem;display:none}
 .promo-status.visible{display:block}
 .promo-selected-list{margin:10px 0 4px;display:flex;flex-direction:column;gap:8px}
@@ -88,14 +105,11 @@ body{background:var(--bg-warm);font-family:'Jost',sans-serif;color:var(--dark);m
 .promo-chip-remove:hover{color:#c00}
 .btn-cancel-promo-inline{background:transparent;color:var(--dark);border:1px solid var(--card-border);border-radius:var(--radius-sm);padding:9px 14px;font-family:'Jost',sans-serif;font-size:.75rem;font-weight:500;letter-spacing:1px;text-transform:uppercase;cursor:pointer;width:100%;margin-top:10px;transition:all .2s}
 .btn-cancel-promo-inline:hover{background:#f0ede7}
-.finish-promo-wrapper{display:none;margin-top:12px}
-.finish-promo-wrapper.visible{display:block}
-.btn-finish-promo{background:var(--dark);color:#fff;border:none;border-radius:var(--radius-sm);padding:14px;font-family:'Jost',sans-serif;font-size:.82rem;font-weight:500;letter-spacing:2px;text-transform:uppercase;cursor:pointer;width:100%;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px}
-.btn-finish-promo:hover{background:#333}
-.btn-finish-promo:active{transform:scale(.97)}
 .promo-hint{display:none;margin-top:10px}
 .promo-hint.visible{display:block}
 .promo-hint-inner{border:1px dashed var(--card-border);border-radius:var(--radius-sm);padding:12px 14px;font-size:.75rem;color:var(--muted);text-align:center;letter-spacing:.5px}
+
+/* Búsqueda aroma */
 .search-wrap{position:relative}
 .search-wrap input{width:100%;padding:15px 18px 15px 44px;border:1px solid var(--card-border);border-radius:var(--radius-pill);background:var(--bg-warm);font-family:'Jost',sans-serif;font-size:.9rem;color:var(--dark);outline:none;transition:all .25s}
 .search-wrap input:focus{border-color:var(--dark);background:#fff;box-shadow:0 0 0 4px rgba(0,0,0,.03)}
@@ -118,6 +132,8 @@ body{background:var(--bg-warm);font-family:'Jost',sans-serif;color:var(--dark);m
 .remove-aroma:hover{background:rgba(255,255,255,.3)}
 .aroma-feromonas-row{display:none;margin-top:12px;padding-top:12px;border-top:1px solid var(--card-border)}
 .aroma-feromonas-row.visible{display:block}
+
+/* Switch / qty */
 .addon-switch-wrap{display:flex;align-items:center;justify-content:space-between;cursor:pointer;padding:4px 0}
 .addon-switch-info{flex:1}
 .addon-switch-label{font-size:.88rem;font-weight:500;display:block}
@@ -131,6 +147,8 @@ body{background:var(--bg-warm);font-family:'Jost',sans-serif;color:var(--dark);m
 .qty-btn{width:38px;height:38px;background:none;border:none;font-size:1.1rem;color:var(--dark);cursor:pointer;transition:background .15s;font-family:'Jost',sans-serif}
 .qty-btn:hover{background:#f0ede7}
 .qty-display{width:36px;text-align:center;font-weight:500;font-size:.9rem;user-select:none}
+
+/* Cupón */
 .coupon-wrap{display:flex;gap:8px;align-items:stretch}
 .coupon-wrap input{flex:1;padding:13px 16px;border:1px solid var(--card-border);border-radius:var(--radius-pill);background:var(--bg-warm);font-family:'Jost',sans-serif;font-size:.85rem;color:var(--dark);outline:none;text-transform:uppercase;letter-spacing:2px;transition:all .2s}
 .coupon-wrap input:focus{border-color:var(--dark);background:#fff}
@@ -143,13 +161,32 @@ body{background:var(--bg-warm);font-family:'Jost',sans-serif;color:var(--dark);m
 .coupon-feedback-icon{font-size:1rem}
 .coupon-feedback-text{flex:1}
 .btn-remove-coupon{background:none;border:none;color:#1a6638;cursor:pointer;font-size:1rem;padding:0 4px;line-height:1}
-.bottom-bar{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:500px;padding:12px 16px 20px;background:var(--glass-bg);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);z-index:90;display:flex;align-items:center;gap:12px;border-top:1px solid rgba(0,0,0,.06)}
-.bottom-bar-preview{flex:1;min-width:0}
-.bottom-bar-label{font-size:.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
-.bottom-bar-price{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:500;letter-spacing:1px;color:var(--dark);line-height:1}
-.btn-add{background:var(--dark);color:#fff;border:none;border-radius:var(--radius-pill);padding:14px 24px;font-family:'Jost',sans-serif;font-size:.8rem;font-weight:500;letter-spacing:2px;text-transform:uppercase;cursor:pointer;white-space:nowrap;transition:all .2s;flex-shrink:0}
+
+/* Resumen */
+.summary-row{display:flex;justify-content:space-between;align-items:baseline;padding:8px 0;border-bottom:1px solid #f0ede7;font-size:.82rem;gap:12px}
+.summary-row:last-of-type{border-bottom:none}
+.summary-row span{color:var(--muted);flex-shrink:0}
+.summary-row strong{color:var(--dark);font-weight:500;text-align:right;flex:1}
+.summary-list{list-style:none;padding:6px 0 0;font-size:.78rem;color:var(--dark)}
+.summary-list li{padding:6px 0;border-bottom:1px dashed #f0ede7;display:flex;justify-content:space-between;gap:8px}
+.summary-list li:last-child{border-bottom:none}
+.summary-price-highlight{margin-top:14px;padding-top:14px;border-top:2px solid var(--gold);display:flex;justify-content:space-between;align-items:baseline}
+.summary-price-highlight span{font-size:.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);font-weight:500}
+.summary-price-highlight strong{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:500;color:var(--dark);letter-spacing:1px}
+
+/* Bottom bar wizard */
+.bottom-bar{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:500px;padding:12px 14px 20px;background:var(--glass-bg);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);z-index:90;display:flex;align-items:center;gap:10px;border-top:1px solid rgba(0,0,0,.06)}
+.bottom-bar-preview{flex:1;min-width:0;text-align:center}
+.bottom-bar-label{font-size:.6rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)}
+.bottom-bar-price{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:500;letter-spacing:1px;color:var(--dark);line-height:1.1}
+.btn-wizard-back{background:transparent;color:var(--dark);border:1px solid var(--card-border);border-radius:var(--radius-pill);padding:12px 14px;font-family:'Jost',sans-serif;font-size:.78rem;font-weight:500;letter-spacing:1px;cursor:pointer;flex-shrink:0;transition:all .2s;min-width:50px}
+.btn-wizard-back:hover{background:#f0ede7}
+.btn-wizard-back:active{transform:scale(.95)}
+.btn-add{background:var(--dark);color:#fff;border:none;border-radius:var(--radius-pill);padding:14px 22px;font-family:'Jost',sans-serif;font-size:.78rem;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;white-space:nowrap;transition:all .2s;flex-shrink:0}
 .btn-add:hover{background:#333}
 .btn-add:active{transform:scale(.97)}
+
+/* Body care */
 .bodycare-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
 .bodycare-card{border:1px solid var(--card-border);border-radius:var(--radius-sm);background:var(--bg-warm);padding:10px;text-align:center}
 .bodycare-card img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px;margin-bottom:8px;background:#f0ede7;display:block}
@@ -161,15 +198,18 @@ body{background:var(--bg-warm);font-family:'Jost',sans-serif;color:var(--dark);m
 .bodycare-card .bc-add-btn{width:100%;padding:10px;background:var(--dark);color:#fff;border:none;border-radius:var(--radius-sm);font-family:'Jost',sans-serif;font-size:.7rem;font-weight:500;letter-spacing:1.2px;text-transform:uppercase;cursor:pointer;transition:background .2s}
 .bodycare-card .bc-add-btn:hover{background:#333}
 .bodycare-card .bc-add-btn:active{transform:scale(.97)}
+
+/* Info btn */
 .info-btn{background:none;border:1.5px solid rgba(184,151,90,.5);border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:600;color:var(--gold);cursor:pointer;line-height:1;padding:0;font-family:'Jost',sans-serif;flex-shrink:0;position:relative;transition:background .2s,border-color .2s,color .2s}
 .info-btn:hover{background:var(--gold);color:#fff;border-color:var(--gold)}
 .info-btn.unseen{border-color:#00aaff;color:#00aaff;animation:infoBtnPulse 1.4s ease-in-out infinite}
 @keyframes infoBtnPulse{0%,100%{box-shadow:0 0 0 0 rgba(0,170,255,0);border-color:#00aaff;color:#00aaff}50%{box-shadow:0 0 8px 2px rgba(0,170,255,.55);border-color:#55ccff;color:#55ccff}}
 @media(prefers-reduced-motion:reduce){.info-btn.unseen{animation:none}}
+
+/* Cart FAB / drawer */
 .cart-fab{position:fixed;top:110px;right:16px;z-index:190;background:var(--dark);color:#fff;border:none;border-radius:50px;padding:12px 18px;font-family:'Jost',sans-serif;font-size:.72rem;font-weight:500;letter-spacing:2px;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;gap:8px;box-shadow:0 6px 24px rgba(0,0,0,.2);transition:opacity .3s,background .2s;opacity:0;pointer-events:none;width:fit-content;height:auto;user-select:none;touch-action:none}
 .cart-fab.visible{opacity:1;pointer-events:auto}
 .cart-fab:hover{background:#333}
-.cart-fab:active{transform:scale(.97)}
 .cart-fab-count{background:var(--gold);color:#fff;font-size:.6rem;font-weight:700;min-width:20px;height:20px;border-radius:10px;display:flex;align-items:center;justify-content:center;padding:0 5px;letter-spacing:0}
 .cart-fab.pulse{animation:fabPulse .4s}
 @keyframes fabPulse{0%{transform:scale(1)}40%{transform:scale(1.08)}100%{transform:scale(1)}}
@@ -233,6 +273,8 @@ body{background:var(--bg-warm);font-family:'Jost',sans-serif;color:var(--dark);m
 .drawer-btn-clear:hover{background:#f5f2ed;color:var(--dark);border-color:var(--dark)}
 .shipping-progress{background:#f0ede7;border-radius:var(--radius-pill);height:6px;margin-top:4px;overflow:hidden}
 .shipping-progress-fill{height:100%;background:var(--gold);border-radius:var(--radius-pill);transition:width .4s}
+
+/* Toast / modales */
 .toast{position:fixed;top:120px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--dark);color:#fff;padding:14px 24px;border-radius:var(--radius-pill);font-size:.78rem;letter-spacing:1px;opacity:0;pointer-events:none;transition:all .3s;z-index:1200;box-shadow:0 8px 28px rgba(0,0,0,.2);white-space:nowrap;max-width:90vw;overflow:hidden;text-overflow:ellipsis}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 .promo-guide-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:2100;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px)}
@@ -312,40 +354,47 @@ Finalizar por WhatsApp
 <button class="category-tab" id="tab-btn-cuerpo" onclick="switchTab('cuerpo')">Cuidado Corporal</button>
 </div>
 
-<!-- ============== TAB PERFUMES ============== -->
+<!-- ============== TAB PERFUMES (WIZARD) ============== -->
 <div id="tab-perfumes" class="tab-content active">
+
 <div class="stepper-grid" id="stepper">
-<div class="stepper-col"><div class="stepper-dot" data-step="size">1</div><span>Frasco</span></div>
+<div class="stepper-col" data-step-btn="1"><div class="stepper-dot" data-step="size">1</div><span>Frasco</span></div>
 <div class="stepper-line" data-line="0"></div>
-<div class="stepper-col"><div class="stepper-dot" data-step="conc">2</div><span>Concentración</span></div>
+<div class="stepper-col" data-step-btn="2"><div class="stepper-dot" data-step="conc">2</div><span>Concentración</span></div>
 <div class="stepper-line" data-line="1"></div>
-<div class="stepper-col"><div class="stepper-dot" data-step="promo">3</div><span>Paquete</span></div>
+<div class="stepper-col" data-step-btn="3"><div class="stepper-dot" data-step="promo">3</div><span>Paquete</span></div>
 <div class="stepper-line" data-line="2"></div>
-<div class="stepper-col"><div class="stepper-dot" data-step="aroma">4</div><span>Aroma</span></div>
+<div class="stepper-col" data-step-btn="4"><div class="stepper-dot" data-step="aroma">4</div><span>Aroma</span></div>
+<div class="stepper-line" data-line="3"></div>
+<div class="stepper-col" data-step-btn="5"><div class="stepper-dot" data-step="final">5</div><span>Finalizar</span></div>
 </div>
 
 <button class="cart-fab" id="cart-fab" onclick="openCart()">🛒 <span class="cart-fab-count" id="cart-fab-count">0</span></button>
 
 <div class="container" id="main-container">
+
+<!-- ================= PASO 1: FRASCO ================= -->
+<div class="wizard-step active" data-step="1">
 <div class="product-image-wrap">
 <img src="https://i.ibb.co/s9xDQ6RR/Photoroom-20260422-231853.jpg?w=800&q=80" alt="Perfume Concentrado">
 <div class="rating-badge">★ 4.8 (1623 reseñas)</div>
 </div>
 <div class="product-info"><h2>Perfume Concentrado</h2><div class="product-subtitle">Longevidad · Alta Estela</div></div>
 
-<!-- PASO 1: FRASCO (tamaño + modelo) -->
 <div class="card" id="card-size">
-<div class="section-label"><span class="step-badge" id="step-badge-size">1</span> Frasco</div>
+<div class="section-label"><span class="step-badge" id="step-badge-size">1</span> Elige tu frasco</div>
 <div class="size-grid">
 <button class="size-btn active" data-size="30ml" onclick="selectSize('30ml')">30 ml</button>
 <button class="size-btn" data-size="100ml" onclick="selectSize('100ml')">100 ml</button>
 </div>
 <div class="model-grid" id="model-grid"></div>
-<div class="price-shimmer" id="selected-price-display">$126.00 MXN</div>
+<div class="price-shimmer" id="selected-price-display">$168.00 MXN</div>
 <div class="price-note">El precio combina tamaño + concentración + estilo de frasco</div>
 </div>
+</div>
 
-<!-- PASO 2: CONCENTRACIÓN -->
+<!-- ================= PASO 2: CONCENTRACIÓN ================= -->
+<div class="wizard-step" data-step="2">
 <div class="card" id="card-conc">
 <div class="section-label"><span class="step-badge" id="step-badge-conc">2</span> Concentración</div>
 <div class="conc-grid">
@@ -354,29 +403,33 @@ Finalizar por WhatsApp
 <button class="conc-btn" data-conc="42" onclick="selectConc('42')"><div class="conc-dots"><span></span><span></span><span></span></div><span>Parfum Premium</span><small>Alta concentración</small></button>
 <button class="conc-btn" data-conc="50" onclick="selectConc('50')"><div class="conc-dots"><span></span><span></span><span></span><span></span></div><span>Extrait</span><small>Máxima intensidad</small></button>
 </div>
-<div class="price-note" style="margin-top:10px;">Cada concentración suma al precio base del frasco (ver precios en el paso 1).</div>
+<div class="price-note" style="margin-top:10px;">Cada concentración suma al precio base del frasco.</div>
+</div>
 </div>
 
-<!-- PASO 3: PAQUETES -->
+<!-- ================= PASO 3: PAQUETE ================= -->
+<div class="wizard-step" data-step="3">
 <div class="card" id="card-promo">
-<div class="section-label"><span class="step-badge" id="step-badge-promo">3</span> Paquetes Especiales (Opcional)</div>
+<div class="section-label"><span class="step-badge" id="step-badge-promo">3</span> ¿Deseas un paquete? (Opcional)</div>
 <p class="promo-instruction">⚠️ <strong>Importante:</strong> Todos los aromas del paquete comparten la misma presentación, modelo de frasco y concentración.</p>
 <div class="promo-bento">
 <button class="promo-btn promo-100" id="promo-100-btn" onclick="startPromo('100ml')">4 × 3<br>100ml <small id="promo-100-price"></small></button>
 <button class="promo-btn promo-30" id="promo-30-btn" onclick="startPromo('30ml')" style="position:relative;">6 × 5<br>30ml <small id="promo-30-price"></small><span class="promo-badge-bestseller">Más vendido</span></button>
 </div>
+<button class="promo-skip-btn" onclick="nextStep()">Continuar con 1 unidad individual →</button>
 <div class="promo-status" id="promo-status">
 <div id="promo-status-text"></div>
 <div class="promo-selected-list" id="promo-selected-list"></div>
 <button class="btn-cancel-promo-inline" onclick="cancelPromo()">✕ Cancelar paquete</button>
 </div>
-<div class="finish-promo-wrapper" id="finish-promo-wrapper"><button class="btn-finish-promo" onclick="finishPromo()">🎁 Añadir paquete al carrito</button></div>
 <div class="promo-hint" id="promo-hint"><div class="promo-hint-inner" id="promo-hint-text">Selecciona todos los aromas en el paso 4</div></div>
 </div>
+</div>
 
-<!-- PASO 4: AROMA + FEROMONAS -->
+<!-- ================= PASO 4: AROMA ================= -->
+<div class="wizard-step" data-step="4">
 <div class="card" id="card-aroma">
-<div class="section-label"><span class="step-badge" id="step-badge-aroma">4</span> Selección de Aroma <button class="info-btn unseen" id="info-btn-aromas" onclick="openInfoModal('aromas')">i</button></div>
+<div class="section-label"><span class="step-badge" id="step-badge-aroma">4</span> <span id="aroma-step-title">Selecciona tu aroma</span> <button class="info-btn unseen" id="info-btn-aromas" onclick="openInfoModal('aromas')">i</button></div>
 <div class="search-wrap">
 <span class="search-icon">🔍</span>
 <input type="text" id="search-input" placeholder="Buscar por código, marca, familia olfativa...">
@@ -396,6 +449,14 @@ Finalizar por WhatsApp
 <div class="ios-switch" id="ios-switch-individual"></div>
 </div>
 </div>
+</div>
+</div>
+
+<!-- ================= PASO 5: FINALIZAR ================= -->
+<div class="wizard-step" data-step="5">
+<div class="card" id="summary-card">
+<div class="section-label"><span class="step-badge" style="background:var(--gold);">✓</span> Resumen del pedido</div>
+<div id="summary-content"></div>
 </div>
 
 <div class="card" id="quantity-section">
@@ -419,12 +480,15 @@ Finalizar por WhatsApp
 </div>
 </div>
 
+</div><!-- /container -->
+
 <div class="bottom-bar" id="bottom-bar">
+<button class="btn-wizard-back" id="btn-wizard-back" onclick="prevStep()" style="display:none;">←</button>
 <div class="bottom-bar-preview">
-<div class="bottom-bar-label" id="bottom-bar-label">Total estimado</div>
-<div class="bottom-bar-price" id="bottom-bar-price">$126.00</div>
+<div class="bottom-bar-label" id="bottom-bar-label">Paso 1 de 5</div>
+<div class="bottom-bar-price" id="bottom-bar-price">$168.00</div>
 </div>
-<button class="btn-add" id="btn-add-bottom" onclick="addToCart()">Añadir al carrito</button>
+<button class="btn-add" id="btn-add-bottom" onclick="nextStep()">Siguiente →</button>
 </div>
 </div>
 
@@ -448,8 +512,7 @@ Finalizar por WhatsApp
 </div>
 </div>
 </div>
-
-<div class="bottom-bar" id="bottom-bar-cuerpo">
+<div class="bottom-bar" id="bottom-bar-cuerpo" style="display:none;">
 <div class="bottom-bar-preview">
 <div class="bottom-bar-label">Total en carrito</div>
 <div class="bottom-bar-price" id="bottom-bar-price-cuerpo">$0.00</div>
@@ -458,7 +521,7 @@ Finalizar por WhatsApp
 </div>
 </div>
 
-<!-- ============== MODALES Y GUÍAS ============== -->
+<!-- ============== MODALES ============== -->
 <div class="promo-guide-overlay" id="promo-guide-overlay" onclick="closePromoGuide()">
 <div class="promo-guide-modal" onclick="event.stopPropagation()">
 <div class="promo-guide-handle"></div>
@@ -468,12 +531,12 @@ Finalizar por WhatsApp
 </div>
 <div class="promo-guide-badge" id="promo-guide-badge">30 ml · Parfum</div>
 <div class="promo-guide-steps">
-<div class="promo-guide-step"><div class="promo-guide-step-num">1</div><div><div class="promo-guide-step-title">Busca aromas en el Paso 4</div><div class="promo-guide-step-desc">Usa el buscador para encontrar cada aroma.</div></div></div>
+<div class="promo-guide-step"><div class="promo-guide-step-num">1</div><div><div class="promo-guide-step-title">Busca aromas en el siguiente paso</div><div class="promo-guide-step-desc">Usa el buscador para encontrar cada aroma.</div></div></div>
 <div class="promo-guide-step"><div class="promo-guide-step-num">2</div><div><div class="promo-guide-step-title">Selecciona <span id="promo-guide-qty">6</span> unidades</div><div class="promo-guide-step-desc">Puedes repetir aromas con los botones +/−.</div></div></div>
 <div class="promo-guide-step"><div class="promo-guide-step-num">3</div><div><div class="promo-guide-step-title">Activa feromonas por aroma</div><div class="promo-guide-step-desc">Botón <strong>F</strong> en cada aroma si deseas +6%.</div></div></div>
-<div class="promo-guide-step"><div class="promo-guide-step-num gold">✓</div><div><div class="promo-guide-step-title">Presiona "Añadir paquete"</div><div class="promo-guide-step-desc">Luego finaliza por WhatsApp desde el carrito.</div></div></div>
+<div class="promo-guide-step"><div class="promo-guide-step-num gold">✓</div><div><div class="promo-guide-step-title">Confirma en el resumen</div><div class="promo-guide-step-desc">Presiona "Añadir paquete" en el paso 5.</div></div></div>
 </div>
-<button class="promo-guide-cta" onclick="closePromoGuide()">¡Entendido!</button>
+<button class="promo-guide-cta" onclick="closePromoGuideAndAdvance()">¡Entendido!</button>
 </div>
 </div>
 
@@ -492,83 +555,71 @@ Finalizar por WhatsApp
 
 <script>
 /* ==========================================================================
-   CONFIGURACIÓN GENERAL
+   CONFIGURACIÓN
    ========================================================================== */
 const WA_NUMBER = "528138917727";
 const PROMO_CODES = {
-  "A10N": {discount:10,type:"percent",description:"10% de descuento"},
-  "RC64": {discount:10,type:"percent",description:"10% de descuento"},
+  "A10N":{discount:10,type:"percent",description:"10% de descuento"},
+  "RC64":{discount:10,type:"percent",description:"10% de descuento"},
   "J10EC":{discount:10,type:"percent",description:"10% de descuento"},
-  "HT10": {discount:10,type:"percent",description:"10% de descuento"},
-  "AT10": {discount:10,type:"percent",description:"10% de descuento"},
+  "HT10":{discount:10,type:"percent",description:"10% de descuento"},
+  "AT10":{discount:10,type:"percent",description:"10% de descuento"},
   "PECH10":{discount:10,type:"percent",description:"10% de descuento"},
-  "DT10": {discount:10,type:"percent",description:"10% de descuento"},
+  "DT10":{discount:10,type:"percent",description:"10% de descuento"},
   "DOSH10":{discount:10,type:"percent",description:"10% de descuento"},
-  "L10S": {discount:10,type:"percent",description:"10% de descuento"},
+  "L10S":{discount:10,type:"percent",description:"10% de descuento"},
   "HAMMSYK":{discount:10,type:"percent",description:"10% de descuento"},
   "AION15X":{discount:1,type:"percent",description:"1% de descuento"},
   "MOM10":{discount:10,type:"percent",description:"10% de descuento"}
 };
-const FEROMONAS_RATE = 0.06; // +6%
+const FEROMONAS_RATE = 0.06;
 
-/* ==========================================================================
-   ✏️ EDITA AQUÍ: TABLA DE PRECIOS BASE POR TAMAÑO Y CONCENTRACIÓN
-   Estos son los precios del modelo base (Frasco Clásico, extra=0).
-   Los demás modelos suman su 'extra' sobre este precio.
-   ========================================================================== */
+/* ✏️ EDITA: precios base por tamaño + concentración */
 const CONC_PRICES = {
-  '30ml':  { 'edp': 126, '33': 168, '42': 210, '50': 252 },
-  '100ml': { 'edp': 420, '33': 504, '42': 630, '50': 756 }
+  '30ml':  {'edp':126,'33':168,'42':210,'50':252},
+  '100ml': {'edp':420,'33':504,'42':630,'50':756}
 };
 
-/* ==========================================================================
-   ✏️ EDITA AQUÍ: MODELOS DE FRASCO
-   - name:  nombre visible del frasco
-   - extra: costo adicional sobre el precio base de la concentración
-            (0 = cuesta exactamente lo que dice CONC_PRICES)
-   - image: URL de la imagen del frasco
-   ========================================================================== */
+/* ✏️ EDITA: frascos (name, extra, image) */
 const BOTTLE_MODELS = {
-  '30ml': [
-    { id:'30-1', name:'Frasco Clásico 30ml',   extra:0,   image:'https://via.placeholder.com/200x200?text=30ml+1' },
-    { id:'30-2', name:'Frasco Elegante 30ml',  extra:15,  image:'https://via.placeholder.com/200x200?text=30ml+2' },
-    { id:'30-3', name:'Frasco Dorado 30ml',    extra:30,  image:'https://via.placeholder.com/200x200?text=30ml+3' },
-    { id:'30-4', name:'Frasco Cristal 30ml',   extra:45,  image:'https://via.placeholder.com/200x200?text=30ml+4' },
-    { id:'30-5', name:'Frasco Premium 30ml',   extra:60,  image:'https://via.placeholder.com/200x200?text=30ml+5' },
-    { id:'30-6', name:'Frasco Signature 30ml', extra:75,  image:'https://via.placeholder.com/200x200?text=30ml+6' }
+  '30ml':[
+    {id:'30-1',name:'Frasco Clásico 30ml',extra:0,image:'https://via.placeholder.com/200x200?text=30ml+1'},
+    {id:'30-2',name:'Frasco Elegante 30ml',extra:15,image:'https://via.placeholder.com/200x200?text=30ml+2'},
+    {id:'30-3',name:'Frasco Dorado 30ml',extra:30,image:'https://via.placeholder.com/200x200?text=30ml+3'},
+    {id:'30-4',name:'Frasco Cristal 30ml',extra:45,image:'https://via.placeholder.com/200x200?text=30ml+4'},
+    {id:'30-5',name:'Frasco Premium 30ml',extra:60,image:'https://via.placeholder.com/200x200?text=30ml+5'},
+    {id:'30-6',name:'Frasco Signature 30ml',extra:75,image:'https://via.placeholder.com/200x200?text=30ml+6'}
   ],
-  '100ml': [
-    { id:'100-1', name:'Frasco Clásico 100ml',   extra:0,   image:'https://via.placeholder.com/200x200?text=100ml+1' },
-    { id:'100-2', name:'Frasco Elegante 100ml',  extra:30,  image:'https://via.placeholder.com/200x200?text=100ml+2' },
-    { id:'100-3', name:'Frasco Dorado 100ml',    extra:60,  image:'https://via.placeholder.com/200x200?text=100ml+3' },
-    { id:'100-4', name:'Frasco Cristal 100ml',   extra:90,  image:'https://via.placeholder.com/200x200?text=100ml+4' },
-    { id:'100-5', name:'Frasco Premium 100ml',   extra:120, image:'https://via.placeholder.com/200x200?text=100ml+5' },
-    { id:'100-6', name:'Frasco Signature 100ml', extra:150, image:'https://via.placeholder.com/200x200?text=100ml+6' }
+  '100ml':[
+    {id:'100-1',name:'Frasco Clásico 100ml',extra:0,image:'https://via.placeholder.com/200x200?text=100ml+1'},
+    {id:'100-2',name:'Frasco Elegante 100ml',extra:30,image:'https://via.placeholder.com/200x200?text=100ml+2'},
+    {id:'100-3',name:'Frasco Dorado 100ml',extra:60,image:'https://via.placeholder.com/200x200?text=100ml+3'},
+    {id:'100-4',name:'Frasco Cristal 100ml',extra:90,image:'https://via.placeholder.com/200x200?text=100ml+4'},
+    {id:'100-5',name:'Frasco Premium 100ml',extra:120,image:'https://via.placeholder.com/200x200?text=100ml+5'},
+    {id:'100-6',name:'Frasco Signature 100ml',extra:150,image:'https://via.placeholder.com/200x200?text=100ml+6'}
   ]
 };
 
-/* ==========================================================================
-   ✏️ EDITA AQUÍ: PRODUCTOS DE CUIDADO CORPORAL
-   ========================================================================== */
+/* ✏️ EDITA: cuidado corporal */
 const BODY_CARE = [
-  { id:'crema',     name:'Crema Corporal 50ml',            price:129, image:'https://via.placeholder.com/200x200?text=Crema' },
-  { id:'deo-rollon',name:'Desodorante Roll-on 50ml',       price:129, image:'https://via.placeholder.com/200x200?text=Deo+Rollon' },
-  { id:'balsamo',   name:'Bálsamo Orgánico Corporal',      price:149, image:'https://via.placeholder.com/200x200?text=Balsamo' },
-  { id:'deo-barra', name:'Desodorante Orgánico en Barra',  price:139, image:'https://via.placeholder.com/200x200?text=Deo+Barra' }
+  {id:'crema',name:'Crema Corporal 50ml',price:129,image:'https://via.placeholder.com/200x200?text=Crema'},
+  {id:'deo-rollon',name:'Desodorante Roll-on 50ml',price:129,image:'https://via.placeholder.com/200x200?text=Deo+Rollon'},
+  {id:'balsamo',name:'Bálsamo Orgánico Corporal',price:149,image:'https://via.placeholder.com/200x200?text=Balsamo'},
+  {id:'deo-barra',name:'Desodorante Orgánico en Barra',price:139,image:'https://via.placeholder.com/200x200?text=Deo+Barra'}
 ];
 
 const CONCENTRATIONS = {
-  'edp': { label:'EDP',           desc:'Eau de Parfum',    dots:1 },
-  '33':  { label:'Parfum',        desc:'Parfum',            dots:2 },
-  '42':  { label:'Parfum Premium',desc:'Alta concentración',dots:3 },
-  '50':  { label:'Extrait',       desc:'Máxima intensidad', dots:4 }
+  'edp':{label:'EDP',desc:'Eau de Parfum',dots:1},
+  '33':{label:'Parfum',desc:'Parfum',dots:2},
+  '42':{label:'Parfum Premium',desc:'Alta concentración',dots:3},
+  '50':{label:'Extrait',desc:'Máxima intensidad',dots:4}
 };
 
 const AROMAS = [
-  {codigo:"D0302NA",nombre:"9AM POUR FEMME DE AFNAN",brand:"AFNAN",familia:"Oriental",salida:"Pera, Ciruela, Azafrán",corazon:"Rosa, Jazmín, Iris",fondo:"Vainilla, Ámbar, Almizcle, Sándalo",caracter_energetico:"Cálido, sensual, femenino, nocturno"},
-  {codigo:"C0208NA",nombre:"9PM DE AFNAN",brand:"AFNAN",familia:"Ámbar Vainilla",salida:"Canela, Manzana, Lavanda",corazon:"Iris, Vainilla, Jazmín",fondo:"Ámbar, Almizcle blanco, Sándalo, Cachemira",caracter_energetico:"Seductor, cálido, envolvente, nocturno"},
-  {codigo:"C0271NA",nombre:"9PM ELIXIR BY AFNAN",brand:"AFNAN",familia:"Oriental Especiada",salida:"Canela, Manzana, Lavanda, Azafrán",corazon:"Iris, Rosa, Jazmín",fondo:"Vainilla, Ámbar, Oud, Almizcle, Sándalo",caracter_energetico:"Intenso, opulento, nocturno, magnético"},
-  {codigo:"DP02864",nombre:"MILLION GOLD FOR HER",brand:"RABANNE",familia:"Floral",salida:"Bergamota, Limón, Frambuesa",corazon:"Jazmín, Rosa, Lirio",fondo:"Cedro, Vainilla, Almizcle",caracter_energetico:"Cálido, floral, oro, nocturno"}
+  {codigo:"D0302NA",nombre:"9AM POUR FEMME DE AFNAN",brand:"AFNAN",familia:"Oriental",caracter_energetico:"Cálido, sensual, femenino, nocturno"},
+  {codigo:"C0208NA",nombre:"9PM DE AFNAN",brand:"AFNAN",familia:"Ámbar Vainilla",caracter_energetico:"Seductor, cálido, envolvente, nocturno"},
+  {codigo:"C0271NA",nombre:"9PM ELIXIR BY AFNAN",brand:"AFNAN",familia:"Oriental Especiada",caracter_energetico:"Intenso, opulento, nocturno, magnético"},
+  {codigo:"DP02864",nombre:"MILLION GOLD FOR HER",brand:"RABANNE",familia:"Floral",caracter_energetico:"Cálido, floral, oro, nocturno"}
 ];
 
 /* ==========================================================================
@@ -578,48 +629,92 @@ let activeTab = 'perfumes';
 let selectedSize = '30ml';
 let selectedModelId = '30-1';
 let selectedConc = '33';
-let state = {
-  selectedAroma: null,
-  withFeromonas: false,
-  quantity: 1,
-  cartItems: [],
-  appliedCoupon: null
-};
-let promoState = {
-  active:false, volume:null, required:0, payFor:0, basePrice:0,
-  concentration:null, selectedAromas:[]
-};
+let currentStep = 1;
+const TOTAL_STEPS = 5;
+const stepNameMap = {1:'size',2:'conc',3:'promo',4:'aroma',5:'final'};
+
+let state = { selectedAroma:null, withFeromonas:false, quantity:1, cartItems:[], appliedCoupon:null };
+let promoState = { active:false, volume:null, required:0, payFor:0, basePrice:0, concentration:null, selectedAromas:[] };
 let bodycareQty = {};
 BODY_CARE.forEach(p => bodycareQty[p.id] = 1);
 
-const stepOrder = ['size','conc','promo','aroma'];
-const completedSteps = new Set();
-
 /* ==========================================================================
-   HELPERS DE PRECIO
+   HELPERS
    ========================================================================== */
 function getCurrentModel() {
-  return BOTTLE_MODELS[selectedSize].find(m => m.id === selectedModelId)
-      || BOTTLE_MODELS[selectedSize][0];
+  return BOTTLE_MODELS[selectedSize].find(m => m.id === selectedModelId) || BOTTLE_MODELS[selectedSize][0];
 }
-// Precio final de un modelo según tamaño + concentración actual
 function getModelPrice(model) {
   return CONC_PRICES[selectedSize][selectedConc] + (model.extra || 0);
 }
-// Precio final del modelo actualmente seleccionado
-function getBasePrice() {
-  return getModelPrice(getCurrentModel());
-}
-function unitPriceWithFeromonas(base, feromonas) {
-  return feromonas ? base * (1 + FEROMONAS_RATE) : base;
+function getBasePrice() { return getModelPrice(getCurrentModel()); }
+function getTotalPromoUnits() {
+  return promoState.selectedAromas.reduce((s,a) => s + a.quantity, 0);
 }
 function calcPackageTotal(p) {
   const feromonasCount = p.selectedAromas.reduce((s,a) => s + (a.withFeromonas ? a.quantity : 0), 0);
   const paidFeromonas = Math.min(feromonasCount, p.payFor);
   return p.basePrice * p.payFor + paidFeromonas * p.basePrice * FEROMONAS_RATE;
 }
-function getTotalPromoUnits() {
-  return promoState.selectedAromas.reduce((s,a) => s + a.quantity, 0);
+
+/* ==========================================================================
+   WIZARD NAVEGACIÓN
+   ========================================================================== */
+function goToStep(n) {
+  if (n < 1 || n > TOTAL_STEPS || n === currentStep) return;
+  currentStep = n;
+  document.querySelectorAll('.wizard-step').forEach(el => {
+    el.classList.toggle('active', parseInt(el.dataset.step) === n);
+  });
+  // Reset scroll
+  window.scrollTo({top: 0, behavior: 'smooth'});
+  updateStepper();
+  updateBottomBar();
+  if (n === 5) renderSummary();
+}
+function nextStep() {
+  // Guard: paso 4 necesita aroma/paquete
+  if (currentStep === 4) {
+    if (promoState.active && getTotalPromoUnits() !== promoState.required) {
+      showToast('Completa los ' + promoState.required + ' aromas del paquete');
+      return;
+    }
+    if (!promoState.active && !state.selectedAroma) {
+      showToast('Selecciona un aroma primero');
+      return;
+    }
+  }
+  if (currentStep < TOTAL_STEPS) goToStep(currentStep + 1);
+}
+function prevStep() {
+  if (currentStep > 1) goToStep(currentStep - 1);
+}
+
+/* Stepper clicks: solo permite volver atrás */
+document.querySelectorAll('[data-step-btn]').forEach(col => {
+  col.addEventListener('click', () => {
+    const target = parseInt(col.dataset.stepBtn);
+    if (target < currentStep) goToStep(target);
+    else if (target > currentStep) showToast('Completa los pasos anteriores primero');
+  });
+});
+
+/* ==========================================================================
+   STEPPER VISUAL
+   ========================================================================== */
+function updateStepper() {
+  document.querySelectorAll('.stepper-col').forEach(col => {
+    const stepNum = parseInt(col.dataset.stepBtn);
+    const dot = col.querySelector('.stepper-dot');
+    col.classList.remove('completed','active','locked');
+    dot.classList.remove('completed','active');
+    if (stepNum < currentStep) { col.classList.add('completed'); dot.classList.add('completed'); dot.textContent = '✓'; }
+    else if (stepNum === currentStep) { dot.classList.add('active'); dot.textContent = stepNum; }
+    else { col.classList.add('locked'); dot.textContent = stepNum; }
+  });
+  document.querySelectorAll('.stepper-line').forEach((line,i) => {
+    line.classList.toggle('done', i+1 < currentStep);
+  });
 }
 
 /* ==========================================================================
@@ -644,8 +739,7 @@ function renderModelGrid() {
   const grid = document.getElementById('model-grid');
   grid.innerHTML = BOTTLE_MODELS[selectedSize].map(m => {
     const price = getModelPrice(m);
-    return `
-    <div class="model-card ${m.id === selectedModelId ? 'active' : ''}" onclick="selectModel('${m.id}')">
+    return `<div class="model-card ${m.id === selectedModelId ? 'active' : ''}" onclick="selectModel('${m.id}')">
       <img src="${m.image}" alt="${m.name}" onerror="this.style.background='#e0dcd4'">
       <div class="model-name">${m.name}</div>
       <div class="model-price">$${price.toFixed(2)}</div>
@@ -657,8 +751,6 @@ function selectModel(id) {
   renderModelGrid();
   updatePriceDisplay();
   if (promoState.active) { cancelPromo(); showToast('Paquete cancelado al cambiar modelo'); }
-  markStepComplete('size');
-  handleStepCompletion();
   updateBottomBar();
 }
 function selectSize(size) {
@@ -668,8 +760,6 @@ function selectSize(size) {
   renderModelGrid();
   updatePriceDisplay();
   if (promoState.active) { cancelPromo(); showToast('Paquete cancelado al cambiar presentación'); }
-  markStepComplete('size');
-  handleStepCompletion();
   updateBottomBar();
 }
 function updatePriceDisplay() {
@@ -686,49 +776,8 @@ function selectConc(conc) {
   selectedConc = conc;
   document.querySelectorAll('.conc-btn').forEach(b => b.classList.toggle('active', b.dataset.conc === conc));
   if (promoState.active) { cancelPromo(); showToast('Paquete cancelado al cambiar concentración'); }
-  renderModelGrid();     // recalcula precios de cada frasco con la nueva concentración
-  updatePriceDisplay();  // actualiza el precio grande
-  updateBottomBar();     // actualiza la barra inferior
-  markStepComplete('conc');
-  handleStepCompletion();
-}
-
-/* ==========================================================================
-   STEPPER
-   ========================================================================== */
-function updateStepper() {
-  const cols = document.querySelectorAll('.stepper-col');
-  const lines = document.querySelectorAll('.stepper-line');
-  cols.forEach(col => {
-    const step = col.querySelector('.stepper-dot').dataset.step;
-    col.classList.toggle('completed', completedSteps.has(step));
-    const dot = col.querySelector('.stepper-dot');
-    dot.classList.remove('active','completed');
-    if (completedSteps.has(step)) { dot.classList.add('completed'); dot.textContent = '✓'; }
-    else dot.textContent = stepOrder.indexOf(step) + 1;
-  });
-  document.querySelectorAll('.stepper-dot').forEach(dot => {
-    if (!completedSteps.has(dot.dataset.step) && !dot.classList.contains('completed')) {
-      dot.classList.add('active');
-    }
-  });
-  lines.forEach((line,i) => line.classList.toggle('done', completedSteps.has(stepOrder[i])));
-  ['size','conc','promo','aroma'].forEach(s => {
-    const badge = document.getElementById('step-badge-'+s);
-    if (badge) {
-      if (completedSteps.has(s)) { badge.textContent = '✓'; badge.classList.add('done'); }
-      else { badge.textContent = stepOrder.indexOf(s) + 1; badge.classList.remove('done'); }
-    }
-  });
-}
-function markStepComplete(step) {
-  if (!completedSteps.has(step)) { completedSteps.add(step); updateStepper(); }
-}
-function handleStepCompletion() {
-  if (selectedSize && getCurrentModel()) markStepComplete('size');
-  if (selectedConc) markStepComplete('conc');
-  if (promoState.active && getTotalPromoUnits() === promoState.required) markStepComplete('promo');
-  if (state.selectedAroma) markStepComplete('aroma');
+  renderModelGrid();
+  updatePriceDisplay();
   updateBottomBar();
 }
 
@@ -745,7 +794,6 @@ function closeCart() {
   document.getElementById('cart-drawer').classList.remove('open');
   document.body.style.overflow = '';
 }
-
 function updateCartDrawer() {
   const items = state.cartItems, count = items.length;
   const fab = document.getElementById('cart-fab');
@@ -782,9 +830,7 @@ function updateCartDrawer() {
   const grandTotal = subtotalAfter + shippingCost;
 
   let totalsHtml = `<div class="drawer-total-row subtotal"><span>Subtotal (${count} ${count===1?'artículo':'artículos'})</span><span>$${subtotal.toFixed(2)}</span></div>`;
-  if (state.appliedCoupon) {
-    totalsHtml += `<div class="drawer-coupon-row"><span>🏷️</span><span class="drawer-coupon-code">${state.appliedCoupon.code}</span><span class="drawer-coupon-desc">${state.appliedCoupon.description}</span><button class="drawer-coupon-remove" onclick="removeCoupon()">✕</button></div>`;
-  }
+  if (state.appliedCoupon) totalsHtml += `<div class="drawer-coupon-row"><span>🏷️</span><span class="drawer-coupon-code">${state.appliedCoupon.code}</span><span class="drawer-coupon-desc">${state.appliedCoupon.description}</span><button class="drawer-coupon-remove" onclick="removeCoupon()">✕</button></div>`;
   if (discount > 0) totalsHtml += `<div class="drawer-total-row discount"><span>Descuento</span><span>−$${discount.toFixed(2)}</span></div>`;
   if (freeShipping) totalsHtml += `<div class="drawer-total-row shipping-free"><span>🚚 Envío</span><span>✓ Gratis</span></div>`;
   else {
@@ -797,7 +843,6 @@ function updateCartDrawer() {
   updateBodycareBottomBar();
   updateBottomBar();
 }
-
 function togglePromoDetail(i) {
   document.getElementById(`promo-toggle-${i}`).classList.toggle('expanded');
   document.getElementById(`promo-detail-${i}`).classList.toggle('expanded');
@@ -806,59 +851,93 @@ function removeCartItem(i) { state.cartItems.splice(i,1); updateCartDrawer(); sh
 function clearCart() {
   state.cartItems = [];
   state.appliedCoupon = null;
-  document.getElementById('coupon-input').disabled = false;
-  document.getElementById('coupon-input').value = '';
-  document.getElementById('coupon-feedback').className = 'coupon-feedback';
-  document.getElementById('coupon-feedback').style.display = 'none';
-  const c2 = document.getElementById('coupon-input-cuerpo');
-  if (c2) { c2.disabled = false; c2.value = ''; }
-  const f2 = document.getElementById('coupon-feedback-cuerpo');
-  if (f2) { f2.className = 'coupon-feedback'; f2.style.display = 'none'; }
+  ['coupon-input','coupon-input-cuerpo'].forEach(id => { const el = document.getElementById(id); if (el) { el.disabled = false; el.value = ''; } });
+  ['coupon-feedback','coupon-feedback-cuerpo'].forEach(id => { const el = document.getElementById(id); if (el) { el.className = 'coupon-feedback'; el.style.display = 'none'; } });
   updateCartDrawer();
   closeCart();
   showToast('Carrito vaciado');
 }
 
 /* ==========================================================================
-   BOTTOM BAR
+   BOTTOM BAR (wizard-aware)
    ========================================================================== */
 function updateBottomBar() {
   if (activeTab !== 'perfumes') return;
   const labelEl = document.getElementById('bottom-bar-label');
   const priceEl = document.getElementById('bottom-bar-price');
-  const btnEl = document.getElementById('btn-add-bottom');
+  const backBtn = document.getElementById('btn-wizard-back');
+  const ctaBtn = document.getElementById('btn-add-bottom');
 
+  backBtn.style.display = currentStep > 1 ? 'inline-block' : 'none';
+  labelEl.textContent = 'Paso ' + currentStep + ' de ' + TOTAL_STEPS;
+
+  // Precio actual
+  let price = 0;
   if (promoState.active) {
-    const totalUnits = getTotalPromoUnits();
-    const isComplete = totalUnits === promoState.required;
-    const total = calcPackageTotal(promoState);
-    labelEl.textContent = isComplete ? 'Total paquete' : 'Precio del paquete';
-    priceEl.textContent = '$' + total.toFixed(2) + ' MXN';
-    if (isComplete) { btnEl.textContent = 'Añadir paquete'; btnEl.onclick = finishPromo; }
-    else { btnEl.textContent = `Completar (${totalUnits}/${promoState.required})`; btnEl.onclick = () => scrollToStep('aroma'); }
-    return;
+    price = calcPackageTotal(promoState);
+  } else {
+    const base = getBasePrice();
+    const feromonas = state.withFeromonas ? base * FEROMONAS_RATE : 0;
+    price = (base + feromonas) * state.quantity;
   }
-  const base = getBasePrice();
-  const feromonasCost = state.withFeromonas ? base * FEROMONAS_RATE : 0;
-  const total = (base + feromonasCost) * state.quantity;
-  labelEl.textContent = 'Total estimado';
-  priceEl.textContent = '$' + total.toFixed(2) + ' MXN';
-  btnEl.textContent = 'Añadir al carrito';
-  btnEl.onclick = addToCart;
+  priceEl.textContent = '$' + price.toFixed(2);
+
+  // CTA según paso
+  if (currentStep < TOTAL_STEPS) {
+    ctaBtn.textContent = 'Siguiente →';
+    ctaBtn.onclick = nextStep;
+  } else {
+    ctaBtn.textContent = promoState.active ? 'Añadir paquete' : 'Añadir al carrito';
+    ctaBtn.onclick = promoState.active ? finishPromo : addToCart;
+  }
+  updateBodycareBottomBar();
 }
 function updateBodycareBottomBar() {
   const total = state.cartItems.reduce((s,i) => s + i.total, 0);
   const el = document.getElementById('bottom-bar-price-cuerpo');
   if (el) el.textContent = '$' + total.toFixed(2) + ' MXN';
 }
-function scrollToStep(step) {
-  const cardMap = {'size':'card-size','conc':'card-conc','promo':'card-promo','aroma':'card-aroma'};
-  const card = document.getElementById(cardMap[step]);
-  if (card) card.scrollIntoView({behavior:'smooth',block:'center'});
+
+/* ==========================================================================
+   RESUMEN (paso 5)
+   ========================================================================== */
+function renderSummary() {
+  const el = document.getElementById('summary-content');
+  const qtySection = document.getElementById('quantity-section');
+  if (promoState.active) {
+    qtySection.style.display = 'none';
+    const rows = promoState.selectedAromas.map(a =>
+      `<li><span>[${a.aroma.codigo}] ${a.aroma.nombre}</span><strong>×${a.quantity}${a.withFeromonas?' ✨F':''}</strong></li>`
+    ).join('');
+    const total = calcPackageTotal(promoState);
+    el.innerHTML = `
+      <div class="summary-row"><span>Frasco</span><strong>${getCurrentModel().name}</strong></div>
+      <div class="summary-row"><span>Concentración</span><strong>${CONCENTRATIONS[selectedConc].label}</strong></div>
+      <div class="summary-row"><span>Paquete</span><strong>Llevas ${promoState.required} · Pagas ${promoState.payFor}</strong></div>
+      <div style="margin-top:10px;font-size:.72rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);font-weight:500;">Aromas (${getTotalPromoUnits()}/${promoState.required})</div>
+      <ul class="summary-list">${rows}</ul>
+      <div class="summary-price-highlight"><span>Total del paquete</span><strong>$${total.toFixed(2)}</strong></div>
+    `;
+  } else if (state.selectedAroma) {
+    qtySection.style.display = 'block';
+    const base = getBasePrice();
+    const feromonas = state.withFeromonas ? base * FEROMONAS_RATE : 0;
+    const total = (base + feromonas) * state.quantity;
+    el.innerHTML = `
+      <div class="summary-row"><span>Frasco</span><strong>${getCurrentModel().name}</strong></div>
+      <div class="summary-row"><span>Concentración</span><strong>${CONCENTRATIONS[selectedConc].label}</strong></div>
+      <div class="summary-row"><span>Aroma</span><strong>[${state.selectedAroma.codigo}] ${state.selectedAroma.nombre}</strong></div>
+      <div class="summary-row"><span>Feromonas</span><strong>${state.withFeromonas ? 'Sí (+6%)' : 'No'}</strong></div>
+      <div class="summary-price-highlight"><span>Total (×${state.quantity})</span><strong>$${total.toFixed(2)}</strong></div>
+    `;
+  } else {
+    qtySection.style.display = 'block';
+    el.innerHTML = '<p style="color:var(--muted);font-size:.82rem;line-height:1.5;">Aún no has seleccionado un aroma. Regresa al paso anterior.</p>';
+  }
 }
 
 /* ==========================================================================
-   BÚSQUEDA DE AROMAS
+   BÚSQUEDA AROMAS
    ========================================================================== */
 const searchInput = document.getElementById('search-input');
 const searchResults = document.getElementById('search-results');
@@ -886,7 +965,6 @@ function handleAromaSelection(idx) {
   else selectAroma(aroma);
   searchResults.classList.remove('visible');
   searchInput.value = '';
-  if (promoState.active && getTotalPromoUnits() === promoState.required) scrollToStep('aroma');
 }
 function selectAroma(aroma) {
   state.selectedAroma = aroma;
@@ -896,8 +974,7 @@ function selectAroma(aroma) {
   document.getElementById('selected-aroma-card').classList.add('visible');
   document.getElementById('aroma-feromonas-row').classList.add('visible');
   updatePriceDisplay();
-  markStepComplete('aroma');
-  handleStepCompletion();
+  updateBottomBar();
   showToast('Seleccionado: ' + aroma.nombre);
 }
 function clearAroma() {
@@ -906,7 +983,7 @@ function clearAroma() {
   document.getElementById('selected-aroma-card').classList.remove('visible');
   document.getElementById('aroma-feromonas-row').classList.remove('visible');
   document.getElementById('ios-switch-individual').classList.remove('on');
-  handleStepCompletion();
+  updateBottomBar();
 }
 function toggleIndividualFeromonas() {
   state.withFeromonas = !state.withFeromonas;
@@ -928,14 +1005,9 @@ function startPromo(volume) {
   else if (volume === '30ml') { required = 6; payFor = 5; }
   else return;
 
-  promoState = {
-    active:true, volume, required, payFor, basePrice,
-    concentration: CONCENTRATIONS[selectedConc].label,
-    selectedAromas:[]
-  };
+  promoState = { active:true, volume, required, payFor, basePrice, concentration: CONCENTRATIONS[selectedConc].label, selectedAromas:[] };
   document.querySelectorAll('.promo-btn').forEach(b => b.classList.remove('active'));
-  const btnId = volume === '100ml' ? 'promo-100-btn' : 'promo-30-btn';
-  document.getElementById(btnId).classList.add('active');
+  document.getElementById(volume === '100ml' ? 'promo-100-btn' : 'promo-30-btn').classList.add('active');
   document.getElementById('promo-status').classList.add('visible');
   state.selectedAroma = null;
   document.getElementById('selected-aroma-card').classList.remove('visible');
@@ -943,16 +1015,14 @@ function startPromo(volume) {
   state.withFeromonas = false;
   document.getElementById('ios-switch-individual').classList.remove('on');
   updatePromoUI();
+  updateBottomBar();
   const titles = {'100ml':'Lleva 4, paga 3','30ml':'Lleva 6, paga 5'};
   openPromoGuide(volume, titles[volume], volume + ' · ' + CONCENTRATIONS[selectedConc].label, required);
-  scrollToStep('aroma');
-  handleStepCompletion();
 }
-
 function updatePromoUI() {
   const totalUnits = getTotalPromoUnits(), required = promoState.required;
   document.getElementById('promo-status-text').innerHTML =
-    `<strong>Aromas seleccionados (${totalUnits}/${required} unidades)</strong><br><small>${promoState.concentration} · ${getCurrentModel().name} · $${promoState.basePrice.toFixed(2)} c/u</small>`;
+    `<strong>Aromas seleccionados (${totalUnits}/${required})</strong><br><small>${promoState.concentration} · ${getCurrentModel().name} · $${promoState.basePrice.toFixed(2)} c/u</small>`;
   const listDiv = document.getElementById('promo-selected-list');
   if (promoState.selectedAromas.length === 0) listDiv.innerHTML = '';
   else {
@@ -970,16 +1040,13 @@ function updatePromoUI() {
     `).join('');
   }
   const isComplete = totalUnits === required;
-  document.getElementById('finish-promo-wrapper').classList.toggle('visible', isComplete);
   document.getElementById('promo-hint').classList.toggle('visible', promoState.active && !isComplete);
   if (!isComplete) {
     const falta = required - totalUnits;
     document.getElementById('promo-hint-text').textContent = 'Faltan ' + falta + ' unidad' + (falta>1?'es':'') + ' por asignar';
   }
-  if (isComplete) markStepComplete('promo');
-  handleStepCompletion();
+  updateBottomBar();
 }
-
 function addToPromoSelection(aroma) {
   const totalUnits = getTotalPromoUnits();
   if (totalUnits >= promoState.required) { showToast('Ya completaste las ' + promoState.required + ' unidades'); return; }
@@ -1011,41 +1078,36 @@ function finishPromo() {
   const totalUnits = getTotalPromoUnits();
   if (totalUnits !== promoState.required) { showToast('Debes completar exactamente ' + promoState.required + ' unidades'); return; }
   const total = calcPackageTotal(promoState);
-  const cartAromas = promoState.selectedAromas.map(i => ({
-    codigo:i.aroma.codigo, nombre:i.aroma.nombre, quantity:i.quantity, withFeromonas:i.withFeromonas
-  }));
-  state.cartItems.push({
-    type:'promo', volume:promoState.volume, modelName:getCurrentModel().name,
-    concentration:promoState.concentration, required:promoState.required, payFor:promoState.payFor,
-    aromas:cartAromas, total
-  });
+  const cartAromas = promoState.selectedAromas.map(i => ({ codigo:i.aroma.codigo, nombre:i.aroma.nombre, quantity:i.quantity, withFeromonas:i.withFeromonas }));
+  state.cartItems.push({ type:'promo', volume:promoState.volume, modelName:getCurrentModel().name, concentration:promoState.concentration, required:promoState.required, payFor:promoState.payFor, aromas:cartAromas, total });
   updateCartDrawer();
   cancelPromo();
   showToast('🎁 Paquete añadido');
-  setTimeout(openCart, 600);
+  resetWizardAfterAdd();
+  setTimeout(openCart, 500);
 }
 function cancelPromo() {
   promoState = {active:false, volume:null, required:0, payFor:0, basePrice:0, concentration:null, selectedAromas:[]};
   document.querySelectorAll('.promo-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('promo-status').classList.remove('visible');
-  document.getElementById('finish-promo-wrapper').classList.remove('visible');
   document.getElementById('promo-hint').classList.remove('visible');
-  handleStepCompletion();
+  updateBottomBar();
 }
 
 /* ==========================================================================
-   CANTIDAD / AÑADIR INDIVIDUAL
+   CANTIDAD / AÑADIR
    ========================================================================== */
 function changeQty(delta) {
   state.quantity = Math.max(1, state.quantity + delta);
   document.getElementById('qty-display').textContent = state.quantity;
   updateBottomBar();
+  renderSummary();
 }
 function addToCart() {
   if (!state.selectedAroma) { showToast('⚠️ Selecciona un aroma primero'); return; }
-  if (promoState.active) { showToast('⚠️ Tienes un paquete activo. Complétalo o cancélalo'); return; }
+  if (promoState.active) { showToast('⚠️ Tienes un paquete activo'); return; }
   const base = getBasePrice();
-  const unitPrice = unitPriceWithFeromonas(base, state.withFeromonas);
+  const unitPrice = state.withFeromonas ? base * (1 + FEROMONAS_RATE) : base;
   const total = unitPrice * state.quantity;
   state.cartItems.push({
     type:'individual', modelName:getCurrentModel().name,
@@ -1055,20 +1117,32 @@ function addToCart() {
   });
   updateCartDrawer();
   showToast('✓ ' + state.selectedAroma.nombre + ' añadido');
-  setTimeout(openCart, 500);
   clearAroma();
+  state.quantity = 1;
+  document.getElementById('qty-display').textContent = 1;
+  state.withFeromonas = false;
+  resetWizardAfterAdd();
+  setTimeout(openCart, 500);
+}
+
+/* Vuelve al paso 1 conservando frasco y concentración para agilizar otro pedido */
+function resetWizardAfterAdd() {
+  state.selectedAroma = null;
   state.withFeromonas = false;
   state.quantity = 1;
   document.getElementById('qty-display').textContent = 1;
-  updateBottomBar();
+  document.getElementById('selected-aroma-card').classList.remove('visible');
+  document.getElementById('aroma-feromonas-row').classList.remove('visible');
+  document.getElementById('ios-switch-individual').classList.remove('on');
+  cancelPromo();
+  goToStep(1);
 }
 
 /* ==========================================================================
    BODY CARE
    ========================================================================== */
 function renderBodycare() {
-  const grid = document.getElementById('bodycare-grid');
-  grid.innerHTML = BODY_CARE.map(p => `
+  document.getElementById('bodycare-grid').innerHTML = BODY_CARE.map(p => `
     <div class="bodycare-card">
       <img src="${p.image}" alt="${p.name}" onerror="this.style.background='#e0dcd4'">
       <div class="bc-name">${p.name}</div>
@@ -1111,31 +1185,21 @@ function applyCouponCode(input) {
   const promo = PROMO_CODES[input];
   if (!promo) { showCouponFeedback('error','✕','Código "' + input + '" no válido.'); return; }
   state.appliedCoupon = {code:input, ...promo};
-  ['coupon-input','coupon-input-cuerpo'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) { el.value = ''; el.disabled = true; }
-  });
+  ['coupon-input','coupon-input-cuerpo'].forEach(id => { const el = document.getElementById(id); if (el) { el.value = ''; el.disabled = true; } });
   showCouponFeedback('success','✓','Código <strong>' + input + '</strong> aplicado — ' + promo.description, true);
   updateCartDrawer();
   showToast('¡Código ' + input + ' aplicado!');
 }
 function removeCoupon() {
   state.appliedCoupon = null;
-  ['coupon-input','coupon-input-cuerpo'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) { el.disabled = false; el.value = ''; }
-  });
-  ['coupon-feedback','coupon-feedback-cuerpo'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) { el.className = 'coupon-feedback'; el.style.display = 'none'; }
-  });
+  ['coupon-input','coupon-input-cuerpo'].forEach(id => { const el = document.getElementById(id); if (el) { el.disabled = false; el.value = ''; } });
+  ['coupon-feedback','coupon-feedback-cuerpo'].forEach(id => { const el = document.getElementById(id); if (el) { el.className = 'coupon-feedback'; el.style.display = 'none'; } });
   updateCartDrawer();
   showToast('Código eliminado');
 }
 function showCouponFeedback(type, icon, msg, showRemove) {
-  const pairs = [['coupon-feedback','coupon-icon','coupon-text','btn-remove-coupon'],
-                 ['coupon-feedback-cuerpo','coupon-icon-cuerpo','coupon-text-cuerpo','btn-remove-coupon-cuerpo']];
-  pairs.forEach(([fbId, iconId, textId, removeId]) => {
+  [['coupon-feedback','coupon-icon','coupon-text','btn-remove-coupon'],
+   ['coupon-feedback-cuerpo','coupon-icon-cuerpo','coupon-text-cuerpo','btn-remove-coupon-cuerpo']].forEach(([fbId, iconId, textId, removeId]) => {
     const fb = document.getElementById(fbId);
     if (!fb) return;
     document.getElementById(iconId).textContent = icon;
@@ -1187,7 +1251,7 @@ function sendToWhatsApp() {
 }
 
 /* ==========================================================================
-   TOAST / GUÍAS / MODALES
+   TOAST / MODALES
    ========================================================================== */
 let toastTimer;
 function showToast(msg) {
@@ -1206,6 +1270,10 @@ function openPromoGuide(volume, title, badge, qty) {
 function closePromoGuide() {
   document.getElementById('promo-guide-overlay').classList.remove('open');
   document.body.style.overflow = '';
+}
+function closePromoGuideAndAdvance() {
+  closePromoGuide();
+  goToStep(4);
 }
 function openInfoModal(id) {
   document.getElementById('modal-'+id+'-overlay').classList.add('open');
@@ -1272,14 +1340,14 @@ document.addEventListener('keydown', e => {
 })();
 
 /* ==========================================================================
-   INICIALIZACIÓN
+   INIT
    ========================================================================== */
 window.addEventListener('load', () => {
   renderModelGrid();
   renderBodycare();
   updatePriceDisplay();
-  updateBottomBar();
   updateStepper();
+  updateBottomBar();
   switchTab('perfumes');
 });
 </script>
