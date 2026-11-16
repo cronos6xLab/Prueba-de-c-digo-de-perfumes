@@ -1,0 +1,1288 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aion Perfumes · Concentrado</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg-warm:#fcfaf7;--card-bg:#fff;--card-border:#ece8e1;--card-shadow:0 8px 30px rgba(0,0,0,.04);--dark:#111;--muted:#666;--gold:#b8975a;--gold-light:#d4b483;--green-wa:#25d366;--green-wa-dark:#128c4e;--radius-card:22px;--radius-sm:8px;--radius-pill:9999px;--drawer-w:420px;--glass-bg:rgba(252,250,247,.85)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg-warm);font-family:'Jost',sans-serif;color:var(--dark);min-height:100vh;-webkit-tap-highlight-color:transparent}
+.announcement-bar{background:var(--dark);color:#fff;padding:9px 0;overflow:hidden;position:sticky;top:0;z-index:102;font-size:.68rem;letter-spacing:2.5px;text-transform:uppercase;border-bottom:1px solid rgba(184,151,90,.35)}
+.marquee-track{display:flex;width:max-content;animation:marquee-smooth 28s linear infinite}
+.announcement-bar:hover .marquee-track{animation-play-state:paused}
+.marquee-track span{white-space:nowrap;padding:0 48px;display:inline-flex;align-items:center;gap:10px}
+.marquee-sep{color:rgba(184,151,90,.8);font-size:.5rem}
+@keyframes marquee-smooth{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.marquee-track{animation:none}}
+.header{background:var(--bg-warm);padding:14px 24px;display:flex;align-items:center;justify-content:center;position:relative;z-index:100}
+.header h1{font-family:'Cormorant Garamond',serif;color:var(--dark);font-size:1.45rem;font-weight:400;letter-spacing:4px;text-transform:uppercase}
+
+/* Tabs categoría */
+.category-tabs{display:flex;gap:8px;padding:0 14px 10px;max-width:500px;margin:0 auto}
+.category-tab{flex:1;padding:11px;border:1px solid var(--card-border);border-radius:var(--radius-pill);background:#fff;font-family:'Jost',sans-serif;font-size:.74rem;font-weight:500;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted);cursor:pointer;transition:all .2s}
+.category-tab.active{background:var(--dark);color:#fff;border-color:var(--dark)}
+.tab-content{display:none}
+.tab-content.active{display:block}
+
+.stepper-grid{display:flex;justify-content:center;align-items:flex-start;gap:0;padding:8px 8px 6px;background:var(--bg-warm);position:sticky;top:38px;z-index:99}
+.stepper-col{display:flex;flex-direction:column;align-items:center;gap:5px;width:58px;transition:all .3s}
+.stepper-dot{width:32px;height:32px;border-radius:50%;background:#e8e4dc;color:#999;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:600;transition:all .35s;flex-shrink:0}
+.stepper-dot.completed{background:var(--dark);color:#fff;animation:dotPop .4s}
+.stepper-dot.active{background:var(--dark);color:#fff;box-shadow:0 0 0 6px rgba(17,17,17,.08);transform:scale(1.12)}
+.stepper-col span{font-size:.52rem;letter-spacing:.4px;text-transform:uppercase;color:#aaa;text-align:center;line-height:1.2;font-weight:500;transition:color .3s}
+.stepper-col.completed span{color:var(--dark);font-weight:600}
+.stepper-line{width:20px;height:1.5px;background:#e0dcd4;margin-top:15px;flex-shrink:0;transition:background .35s}
+.stepper-line.done{background:var(--dark)}
+@keyframes dotPop{0%{transform:scale(1)}40%{transform:scale(1.35)}100%{transform:scale(1)}}
+.container{max-width:500px;margin:0 auto;padding:0 14px 160px}
+.card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius-card);box-shadow:var(--card-shadow);padding:20px 18px;margin-bottom:16px;transition:transform .2s,box-shadow .2s}
+.product-image-wrap{position:relative;width:100%;height:320px;overflow:hidden;border-radius:var(--radius-card);margin-bottom:8px}
+.product-image-wrap img{width:100%;height:100%;object-fit:cover}
+.rating-badge{position:absolute;bottom:14px;left:14px;background:rgba(255,255,255,.95);border:1px solid var(--card-border);color:var(--dark);padding:6px 12px;border-radius:var(--radius-sm);font-size:.75rem;letter-spacing:1px;display:flex;align-items:center;gap:6px;box-shadow:0 2px 10px rgba(0,0,0,.05)}
+.product-info{padding:8px 4px 4px;text-align:center}
+.product-info h2{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;letter-spacing:2px;color:var(--dark);margin-bottom:4px}
+.product-subtitle{font-size:.7rem;color:var(--muted);letter-spacing:3px;text-transform:uppercase}
+.section-label{font-size:.72rem;text-transform:uppercase;letter-spacing:2.5px;color:var(--muted);margin-bottom:12px;font-weight:500;display:flex;align-items:center;gap:8px}
+.step-badge{background:var(--dark);color:#fff;width:20px;height:20px;display:flex;align-items:center;justify-content:center;border-radius:50%;font-size:.6rem;font-weight:600;flex-shrink:0}
+.step-badge.done{background:#2e7d32}
+
+/* Size + Model */
+.size-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.size-btn{padding:14px 6px;border:1px solid var(--card-border);border-radius:var(--radius-sm);background:var(--bg-warm);font-family:'Jost',sans-serif;font-size:.85rem;font-weight:500;color:var(--muted);cursor:pointer;transition:all .2s;text-align:center;position:relative}
+.size-btn:hover{border-color:var(--dark);color:var(--dark)}
+.size-btn.active{background:var(--dark);color:#fff;border-color:var(--dark);box-shadow:0 6px 20px rgba(0,0,0,.18);transform:translateY(-2px)}
+.model-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
+.model-card{border:1px solid var(--card-border);border-radius:var(--radius-sm);background:var(--bg-warm);padding:8px;cursor:pointer;transition:all .2s;text-align:center}
+.model-card:hover{border-color:var(--dark)}
+.model-card.active{border-color:var(--dark);background:#fff;box-shadow:0 4px 16px rgba(0,0,0,.12);transform:translateY(-1px)}
+.model-card img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px;margin-bottom:6px;background:#f0ede7;display:block}
+.model-card .model-name{font-size:.66rem;font-weight:500;line-height:1.3;margin-bottom:3px;color:var(--dark)}
+.model-card .model-price{font-size:.75rem;font-weight:600;color:var(--gold)}
+.price-shimmer{text-align:center;font-size:1.2rem;font-weight:600;letter-spacing:1px;color:var(--dark);margin-top:12px;background:linear-gradient(90deg,#b8975a 0%,#d4b483 50%,#b8975a 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 2.5s ease-in-out infinite}
+@keyframes shimmer{0%,100%{opacity:.85}50%{opacity:1}}
+.price-note{text-align:center;font-size:.62rem;color:var(--muted);letter-spacing:.5px;margin-top:4px}
+
+/* Concentración */
+.conc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.conc-btn{padding:14px 10px;border:1px solid var(--card-border);border-radius:var(--radius-sm);background:var(--bg-warm);font-family:'Jost',sans-serif;font-size:.75rem;font-weight:500;color:var(--muted);cursor:pointer;transition:all .2s;text-align:center;line-height:1.4;display:flex;flex-direction:column;align-items:center;gap:4px}
+.conc-btn:hover{border-color:var(--dark);color:var(--dark)}
+.conc-btn.active{background:var(--dark);color:#fff;border-color:var(--dark);box-shadow:0 6px 20px rgba(0,0,0,.15);transform:translateY(-1px)}
+.conc-dots{display:flex;gap:3px}
+.conc-dots span{width:7px;height:7px;border-radius:50%;background:#c5bfb5;transition:background .2s}
+.conc-btn.active .conc-dots span{background:#fff}
+.conc-btn small{display:block;font-size:.6rem;opacity:.7;font-weight:400}
+
+/* Paquetes */
+.promo-bento{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.promo-btn{padding:14px 8px;background:var(--bg-warm);border:1px solid var(--card-border);border-radius:var(--radius-sm);font-family:'Jost',sans-serif;font-size:.78rem;font-weight:500;color:var(--muted);cursor:pointer;transition:all .2s;text-align:center;line-height:1.4;opacity:.55;position:relative}
+.promo-btn.active-vol{opacity:1;border-color:#c5bfb5;color:var(--dark)}
+.promo-btn.active{background:var(--dark);color:#fff;border-color:var(--dark);opacity:1;box-shadow:0 6px 18px rgba(0,0,0,.14);transform:translateY(-1px)}
+.promo-btn small{display:block;font-size:.68rem;opacity:.75;margin-top:2px;font-weight:400}
+.promo-badge-bestseller{position:absolute;top:-8px;right:-4px;background:var(--gold);color:#fff;font-size:.55rem;letter-spacing:1px;text-transform:uppercase;padding:2px 7px;border-radius:3px;font-weight:600}
+.promo-instruction{font-size:.72rem;color:var(--dark);background:#fffdf5;border:1px solid #e8dfc3;border-left:3px solid var(--gold);padding:10px 12px;border-radius:var(--radius-sm);margin-bottom:12px;line-height:1.4}
+.promo-status{margin-top:12px;background:var(--bg-warm);border:1px solid var(--card-border);padding:14px;border-radius:var(--radius-sm);font-size:.82rem;display:none}
+.promo-status.visible{display:block}
+.promo-selected-list{margin:10px 0 4px;display:flex;flex-direction:column;gap:8px}
+.promo-chip{display:flex;align-items:center;background:#fff;padding:7px 8px;border:1px solid var(--card-border);font-size:.72rem;border-radius:var(--radius-sm);gap:6px;white-space:nowrap}
+.promo-chip-code{font-weight:600;font-size:.66rem;background:#f0ede7;padding:2px 6px;border-radius:var(--radius-pill);letter-spacing:.3px;flex-shrink:0}
+.promo-chip-name{color:var(--dark);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;font-size:.72rem}
+.promo-chip-qty-btn{width:24px;height:24px;border-radius:50%;border:1px solid var(--card-border);background:#fff;font-size:.72rem;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--dark);transition:all .15s;flex-shrink:0;padding:0}
+.promo-chip-qty-btn:hover{background:var(--dark);color:#fff;border-color:var(--dark)}
+.promo-chip-qty-btn:disabled{opacity:.35;cursor:not-allowed}
+.promo-chip-feromonas{width:24px;height:24px;border-radius:50%;border:1px solid var(--card-border);background:#fff;font-size:.6rem;font-weight:700;color:var(--muted);cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;flex-shrink:0;transition:all .2s;font-family:'Jost',sans-serif}
+.promo-chip-feromonas.active{background:var(--gold);color:#fff;border-color:var(--gold)}
+.promo-chip-remove{cursor:pointer;color:#999;font-size:.9rem;margin-left:2px;transition:color .15s;line-height:1;flex-shrink:0}
+.promo-chip-remove:hover{color:#c00}
+.btn-cancel-promo-inline{background:transparent;color:var(--dark);border:1px solid var(--card-border);border-radius:var(--radius-sm);padding:9px 14px;font-family:'Jost',sans-serif;font-size:.75rem;font-weight:500;letter-spacing:1px;text-transform:uppercase;cursor:pointer;width:100%;margin-top:10px;transition:all .2s}
+.btn-cancel-promo-inline:hover{background:#f0ede7}
+.finish-promo-wrapper{display:none;margin-top:12px}
+.finish-promo-wrapper.visible{display:block}
+.btn-finish-promo{background:var(--dark);color:#fff;border:none;border-radius:var(--radius-sm);padding:14px;font-family:'Jost',sans-serif;font-size:.82rem;font-weight:500;letter-spacing:2px;text-transform:uppercase;cursor:pointer;width:100%;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px}
+.btn-finish-promo:hover{background:#333}
+.btn-finish-promo:active{transform:scale(.97)}
+.promo-hint{display:none;margin-top:10px}
+.promo-hint.visible{display:block}
+.promo-hint-inner{border:1px dashed var(--card-border);border-radius:var(--radius-sm);padding:12px 14px;font-size:.75rem;color:var(--muted);text-align:center;letter-spacing:.5px}
+
+/* Búsqueda aroma */
+.search-wrap{position:relative}
+.search-wrap input{width:100%;padding:15px 18px 15px 44px;border:1px solid var(--card-border);border-radius:var(--radius-pill);background:var(--bg-warm);font-family:'Jost',sans-serif;font-size:.9rem;color:var(--dark);outline:none;transition:all .25s}
+.search-wrap input:focus{border-color:var(--dark);background:#fff;box-shadow:0 0 0 4px rgba(0,0,0,.03)}
+.search-icon{position:absolute;left:17px;top:50%;transform:translateY(-50%);font-size:1rem;color:var(--muted);pointer-events:none}
+.search-results{background:#fff;border:1px solid var(--card-border);border-top:none;border-radius:0 0 16px 16px;position:absolute;top:100%;left:0;right:0;overflow:hidden;display:none;box-shadow:0 12px 30px rgba(0,0,0,.08);z-index:50;max-height:320px;overflow-y:auto}
+.search-results.visible{display:block}
+.search-result-item{padding:12px 16px;cursor:pointer;border-bottom:1px solid #f0ede7;font-size:.82rem;display:flex;align-items:center;gap:10px;transition:background .15s}
+.search-result-item:last-child{border-bottom:none}
+.search-result-item:hover{background:#faf8f5}
+.search-result-item .aroma-code{font-weight:600;font-size:.68rem;background:#f0ede7;padding:3px 7px;border-radius:var(--radius-pill);letter-spacing:.5px;white-space:nowrap;flex-shrink:0}
+.search-result-item .aroma-info{flex:1;min-width:0}
+.search-result-item .aroma-name{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:1rem;letter-spacing:.5px;margin-bottom:2px}
+.search-result-item .aroma-meta{font-size:.68rem;color:var(--muted);letter-spacing:.3px}
+.selected-aroma-card{display:none;margin-top:12px;background:var(--dark);color:#fff;border-radius:var(--radius-sm);padding:14px 16px;align-items:center;gap:10px}
+.selected-aroma-card.visible{display:flex}
+.selected-aroma-card .aroma-text{flex:1}
+.selected-aroma-card .aroma-text strong{display:block;font-weight:500;font-size:.9rem;letter-spacing:.5px}
+.selected-aroma-card .aroma-text small{color:rgba(255,255,255,.7);font-size:.7rem;display:block;line-height:1.5}
+.remove-aroma{background:rgba(255,255,255,.15);border:none;color:#fff;cursor:pointer;font-size:1rem;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:background .2s;flex-shrink:0}
+.remove-aroma:hover{background:rgba(255,255,255,.3)}
+.aroma-feromonas-row{display:none;margin-top:12px;padding-top:12px;border-top:1px solid var(--card-border)}
+.aroma-feromonas-row.visible{display:block}
+
+/* Switch / qty / cupón / botones */
+.addon-switch-wrap{display:flex;align-items:center;justify-content:space-between;cursor:pointer;padding:4px 0}
+.addon-switch-info{flex:1}
+.addon-switch-label{font-size:.88rem;font-weight:500;display:block}
+.addon-switch-desc{font-size:.72rem;color:var(--muted);margin-top:2px;display:block}
+.addon-switch-price{font-weight:500;font-size:.85rem;margin-right:10px;color:var(--gold)}
+.ios-switch{width:50px;height:30px;background:#d1cdc5;border-radius:30px;position:relative;cursor:pointer;transition:background .25s;flex-shrink:0}
+.ios-switch.on{background:var(--gold)}
+.ios-switch::after{content:'';width:26px;height:26px;background:#fff;border-radius:50%;position:absolute;top:2px;left:2px;transition:transform .25s;box-shadow:0 2px 6px rgba(0,0,0,.15)}
+.ios-switch.on::after{transform:translateX(20px)}
+.qty-control{display:flex;align-items:center;border:1px solid var(--card-border);border-radius:var(--radius-pill);overflow:hidden}
+.qty-btn{width:38px;height:38px;background:none;border:none;font-size:1.1rem;color:var(--dark);cursor:pointer;transition:background .15s;font-family:'Jost',sans-serif}
+.qty-btn:hover{background:#f0ede7}
+.qty-display{width:36px;text-align:center;font-weight:500;font-size:.9rem;user-select:none}
+.coupon-wrap{display:flex;gap:8px;align-items:stretch}
+.coupon-wrap input{flex:1;padding:13px 16px;border:1px solid var(--card-border);border-radius:var(--radius-pill);background:var(--bg-warm);font-family:'Jost',sans-serif;font-size:.85rem;color:var(--dark);outline:none;text-transform:uppercase;letter-spacing:2px;transition:all .2s}
+.coupon-wrap input:focus{border-color:var(--dark);background:#fff}
+.coupon-wrap input::placeholder{text-transform:none;letter-spacing:.5px;color:#aaa}
+.btn-apply-coupon{padding:13px 16px;background:var(--dark);color:#fff;border:none;border-radius:var(--radius-pill);font-family:'Jost',sans-serif;font-size:.75rem;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;white-space:nowrap;transition:all .2s}
+.btn-apply-coupon:hover{background:#333}
+.coupon-feedback{margin-top:10px;padding:10px 14px;border-radius:var(--radius-sm);font-size:.78rem;display:none;align-items:center;gap:10px;line-height:1.4}
+.coupon-feedback.success{display:flex;background:#f0faf4;border:1px solid #a8dfc0;color:#1a6638}
+.coupon-feedback.error{display:flex;background:#fff5f5;border:1px solid #f5c0c0;color:#a33}
+.coupon-feedback-icon{font-size:1rem}
+.coupon-feedback-text{flex:1}
+.btn-remove-coupon{background:none;border:none;color:#1a6638;cursor:pointer;font-size:1rem;padding:0 4px;line-height:1}
+
+/* Bottom bar */
+.bottom-bar{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:500px;padding:12px 16px 20px;background:var(--glass-bg);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);z-index:90;display:flex;align-items:center;gap:12px;border-top:1px solid rgba(0,0,0,.06)}
+.bottom-bar-preview{flex:1;min-width:0}
+.bottom-bar-label{font-size:.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
+.bottom-bar-price{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:500;letter-spacing:1px;color:var(--dark);line-height:1}
+.btn-add{background:var(--dark);color:#fff;border:none;border-radius:var(--radius-pill);padding:14px 24px;font-family:'Jost',sans-serif;font-size:.8rem;font-weight:500;letter-spacing:2px;text-transform:uppercase;cursor:pointer;white-space:nowrap;transition:all .2s;flex-shrink:0}
+.btn-add:hover{background:#333}
+.btn-add:active{transform:scale(.97)}
+
+/* Body care grid */
+.bodycare-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.bodycare-card{border:1px solid var(--card-border);border-radius:var(--radius-sm);background:var(--bg-warm);padding:10px;text-align:center}
+.bodycare-card img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px;margin-bottom:8px;background:#f0ede7;display:block}
+.bodycare-card .bc-name{font-size:.76rem;font-weight:500;margin-bottom:4px;line-height:1.3}
+.bodycare-card .bc-price{font-size:.9rem;font-weight:600;color:var(--gold);margin-bottom:8px}
+.bodycare-card .bc-qty-row{display:flex;align-items:center;justify-content:center;gap:6px;margin-bottom:8px}
+.bodycare-card .bc-qty-row button{width:28px;height:28px;border-radius:50%;border:1px solid var(--card-border);background:#fff;font-size:.85rem;cursor:pointer;color:var(--dark);font-family:'Jost',sans-serif;padding:0;line-height:1}
+.bodycare-card .bc-qty-val{min-width:24px;text-align:center;font-weight:600;font-size:.82rem}
+.bodycare-card .bc-add-btn{width:100%;padding:10px;background:var(--dark);color:#fff;border:none;border-radius:var(--radius-sm);font-family:'Jost',sans-serif;font-size:.7rem;font-weight:500;letter-spacing:1.2px;text-transform:uppercase;cursor:pointer;transition:background .2s}
+.bodycare-card .bc-add-btn:hover{background:#333}
+.bodycare-card .bc-add-btn:active{transform:scale(.97)}
+
+/* Cart fab / drawer / toast / tour / modales */
+.info-btn{background:none;border:1.5px solid rgba(184,151,90,.5);border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:600;color:var(--gold);cursor:pointer;line-height:1;padding:0;font-family:'Jost',sans-serif;flex-shrink:0;position:relative;transition:background .2s,border-color .2s,color .2s}
+.info-btn:hover{background:var(--gold);color:#fff;border-color:var(--gold)}
+.info-btn.unseen{border-color:#00aaff;color:#00aaff;animation:infoBtnPulse 1.4s ease-in-out infinite}
+@keyframes infoBtnPulse{0%,100%{box-shadow:0 0 0 0 rgba(0,170,255,0);border-color:#00aaff;color:#00aaff}50%{box-shadow:0 0 8px 2px rgba(0,170,255,.55);border-color:#55ccff;color:#55ccff}}
+@media(prefers-reduced-motion:reduce){.info-btn.unseen{animation:none}}
+.cart-fab{position:fixed;top:110px;right:16px;z-index:190;background:var(--dark);color:#fff;border:none;border-radius:50px;padding:12px 18px;font-family:'Jost',sans-serif;font-size:.72rem;font-weight:500;letter-spacing:2px;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;gap:8px;box-shadow:0 6px 24px rgba(0,0,0,.2);transition:opacity .3s,background .2s;opacity:0;pointer-events:none;width:fit-content;height:auto;user-select:none;touch-action:none}
+.cart-fab.visible{opacity:1;pointer-events:auto}
+.cart-fab:hover{background:#333}
+.cart-fab:active{transform:scale(.97)}
+.cart-fab-count{background:var(--gold);color:#fff;font-size:.6rem;font-weight:700;min-width:20px;height:20px;border-radius:10px;display:flex;align-items:center;justify-content:center;padding:0 5px;letter-spacing:0}
+.cart-fab.pulse{animation:fabPulse .4s}
+@keyframes fabPulse{0%{transform:scale(1)}40%{transform:scale(1.08)}100%{transform:scale(1)}}
+.cart-fab.dragging{opacity:.8;transition:none}
+.cart-overlay{position:fixed;inset:0;background:rgba(0,0,0,0);z-index:200;pointer-events:none;transition:background .35s;backdrop-filter:blur(0px);-webkit-backdrop-filter:blur(0px)}
+.cart-overlay.open{background:rgba(0,0,0,.4);pointer-events:auto;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.cart-drawer{position:fixed;top:0;right:0;bottom:0;width:var(--drawer-w);max-width:100vw;background:#fff;z-index:201;display:flex;flex-direction:column;transform:translateX(100%);transition:transform .38s cubic-bezier(.16,1,.3,1);box-shadow:-12px 0 48px rgba(0,0,0,.12);border-radius:20px 0 0 20px}
+.cart-drawer.open{transform:translateX(0)}
+.drawer-header{display:flex;align-items:center;justify-content:space-between;padding:22px 24px 18px;border-bottom:1px solid var(--card-border);flex-shrink:0}
+.drawer-header-left{display:flex;align-items:center;gap:12px}
+.drawer-title{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:400;letter-spacing:3px;text-transform:uppercase;color:var(--dark)}
+.drawer-item-count{background:var(--gold);color:#fff;font-size:.62rem;font-weight:700;letter-spacing:1px;min-width:22px;height:22px;border-radius:11px;display:flex;align-items:center;justify-content:center;padding:0 6px}
+.drawer-close{background:var(--bg-warm);border:none;border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center;font-size:1rem;color:var(--muted);cursor:pointer;transition:all .15s;flex-shrink:0}
+.drawer-close:hover{background:#e0dcd4;color:var(--dark)}
+.drawer-body{flex:1;overflow-y:auto;padding:0}
+.drawer-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 30px;text-align:center;height:100%;color:var(--muted)}
+.drawer-empty-icon{font-size:3rem;margin-bottom:16px;opacity:.3}
+.drawer-empty-title{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:400;color:var(--dark);letter-spacing:2px;margin-bottom:8px}
+.drawer-empty-sub{font-size:.8rem;letter-spacing:.5px;line-height:1.6}
+.drawer-items{padding:0 16px}
+.drawer-cart-item{border-bottom:1px solid #f0ede7;padding:16px 0;animation:slideIn .25s}
+@keyframes slideIn{from{opacity:0;transform:translateX(12px)}to{opacity:1;transform:translateX(0)}}
+.drawer-item-header{display:flex;align-items:flex-start;gap:10px;margin-bottom:8px}
+.drawer-item-icon{width:40px;height:40px;border-radius:var(--radius-sm);background:var(--bg-warm);border:1px solid var(--card-border);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+.drawer-item-meta{flex:1;min-width:0}
+.drawer-item-name{font-weight:500;font-size:.85rem;line-height:1.3;margin-bottom:2px}
+.drawer-item-sub{font-size:.7rem;color:var(--muted);letter-spacing:.3px;line-height:1.5}
+.drawer-item-price-row{display:flex;align-items:center;justify-content:space-between;margin-top:4px}
+.drawer-item-price{font-size:.95rem;font-weight:500;letter-spacing:.5px;color:var(--dark)}
+.drawer-remove-btn{background:none;border:1px solid var(--card-border);border-radius:var(--radius-sm);padding:4px 10px;font-size:.68rem;color:var(--muted);cursor:pointer;font-family:'Jost',sans-serif;letter-spacing:.5px;transition:all .15s}
+.drawer-remove-btn:hover{border-color:#c00;color:#c00;background:#fff5f5}
+.drawer-promo-toggle{background:var(--bg-warm);border:1px solid var(--card-border);border-radius:var(--radius-sm);padding:8px 12px;font-size:.72rem;font-family:'Jost',sans-serif;color:var(--dark);cursor:pointer;width:100%;text-align:left;display:flex;align-items:center;justify-content:space-between;margin-top:8px;transition:background .15s;font-weight:500}
+.drawer-promo-toggle:hover{background:#f0ede7}
+.drawer-promo-toggle .toggle-arrow{font-size:.6rem;transition:transform .2s;color:var(--muted)}
+.drawer-promo-toggle.expanded .toggle-arrow{transform:rotate(180deg)}
+.drawer-promo-details{overflow:hidden;max-height:0;transition:max-height .3s}
+.drawer-promo-details.expanded{max-height:400px}
+.drawer-promo-details-inner{padding:10px 12px;background:#faf8f5;border:1px solid var(--card-border);border-top:none;border-radius:0 0 var(--radius-sm) var(--radius-sm)}
+.drawer-promo-aroma-row{display:flex;align-items:center;justify-content:space-between;padding:4px 0;border-bottom:1px solid #f0ede7;font-size:.72rem;color:var(--muted)}
+.drawer-promo-aroma-row:last-child{border-bottom:none}
+.drawer-promo-aroma-code{font-weight:600;color:var(--dark);margin-right:6px;font-size:.68rem}
+.drawer-promo-badge{display:inline-flex;align-items:center;gap:4px;background:#fffdf5;border:1px solid rgba(184,151,90,.35);color:var(--gold);font-size:.62rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:2px 8px;border-radius:3px;margin-bottom:8px}
+.drawer-feromonas-badge{display:inline-flex;align-items:center;gap:5px;background:#f5f0fa;border:1px solid #d0bde8;color:#6b3fa0;font-size:.65rem;letter-spacing:.5px;padding:3px 10px;border-radius:3px;margin-top:4px}
+.drawer-footer{border-top:1px solid var(--card-border);padding:16px 20px 24px;background:#fff;flex-shrink:0;border-radius:0 0 20px 0}
+.drawer-totals{margin-bottom:14px}
+.drawer-total-row{display:flex;justify-content:space-between;align-items:center;font-size:.78rem;padding:4px 0;color:var(--muted)}
+.drawer-total-row.subtotal{color:var(--dark)}
+.drawer-total-row.discount{color:#1a6638;font-weight:500}
+.drawer-total-row.shipping-free{color:#1a6638}
+.drawer-grand-total{display:flex;justify-content:space-between;align-items:center;padding:14px 0 0;margin-top:6px;border-top:1px solid var(--card-border)}
+.drawer-grand-total .label{font-size:.7rem;letter-spacing:2px;text-transform:uppercase;font-weight:600;color:var(--dark)}
+.drawer-grand-total .amount{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:400;letter-spacing:1px;color:var(--dark)}
+.drawer-coupon-row{display:flex;align-items:center;gap:6px;margin-bottom:10px;padding:8px 12px;background:#fffdf5;border:1px solid rgba(184,151,90,.3);border-radius:var(--radius-sm);font-size:.74rem}
+.drawer-coupon-code{font-weight:600;color:var(--gold);letter-spacing:1px}
+.drawer-coupon-desc{flex:1;color:var(--muted)}
+.drawer-coupon-remove{background:none;border:none;color:var(--muted);cursor:pointer;font-size:.85rem;padding:2px}
+.drawer-actions{display:flex;flex-direction:column;gap:8px}
+.drawer-btn-wa{background:var(--green-wa);color:#fff;border:none;border-radius:var(--radius-sm);padding:15px;font-family:'Jost',sans-serif;font-size:.82rem;font-weight:500;letter-spacing:2px;text-transform:uppercase;cursor:pointer;width:100%;display:flex;align-items:center;justify-content:center;gap:8px;transition:background .2s}
+.drawer-btn-wa:hover{background:var(--green-wa-dark)}
+.drawer-btn-clear{background:transparent;color:var(--muted);border:1px solid var(--card-border);border-radius:var(--radius-sm);padding:10px 14px;font-family:'Jost',sans-serif;font-size:.72rem;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;width:100%;transition:all .2s}
+.drawer-btn-clear:hover{background:#f5f2ed;color:var(--dark);border-color:var(--dark)}
+.shipping-progress{background:#f0ede7;border-radius:var(--radius-pill);height:6px;margin-top:4px;overflow:hidden}
+.shipping-progress-fill{height:100%;background:var(--gold);border-radius:var(--radius-pill);transition:width .4s}
+.toast{position:fixed;top:120px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--dark);color:#fff;padding:14px 24px;border-radius:var(--radius-pill);font-size:.78rem;letter-spacing:1px;opacity:0;pointer-events:none;transition:all .3s;z-index:1200;box-shadow:0 8px 28px rgba(0,0,0,.2);white-space:nowrap;max-width:90vw;overflow:hidden;text-overflow:ellipsis}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.promo-guide-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:2100;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px)}
+.promo-guide-overlay.open{opacity:1;pointer-events:auto}
+.promo-guide-modal{position:fixed;bottom:0;left:50%;transform:translateX(-50%) translateY(30px);width:100%;max-width:500px;background:#fff;border-radius:20px 20px 0 0;padding:0 0 32px;z-index:2101;box-shadow:0 -12px 40px rgba(0,0,0,.18);transition:transform .35s,opacity .3s;opacity:0}
+.promo-guide-overlay.open .promo-guide-modal{transform:translateX(-50%) translateY(0);opacity:1}
+.promo-guide-handle{width:36px;height:4px;background:#e0dcd4;border-radius:9999px;margin:12px auto 0}
+.promo-guide-header{padding:16px 20px 0;display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.promo-guide-eyebrow{font-size:.58rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:3px}
+.promo-guide-title{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:500;letter-spacing:1px;color:var(--dark);line-height:1.2}
+.promo-guide-close{background:var(--bg-warm);border:none;border-radius:50%;width:30px;height:30px;display:flex;align-items:center;justify-content:center;font-size:.85rem;color:var(--muted);cursor:pointer;flex-shrink:0}
+.promo-guide-steps{padding:16px 20px 0;display:flex;flex-direction:column}
+.promo-guide-step{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-bottom:1px solid #f0ede7}
+.promo-guide-step:last-child{border-bottom:none}
+.promo-guide-step-num{width:26px;height:26px;border-radius:50%;background:var(--dark);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:600;flex-shrink:0}
+.promo-guide-step-num.gold{background:var(--gold)}
+.promo-guide-step-title{font-size:.84rem;font-weight:600;margin-bottom:2px}
+.promo-guide-step-desc{font-size:.75rem;color:var(--muted);line-height:1.5}
+.promo-guide-badge{display:inline-block;background:#fffdf5;border:1px solid rgba(184,151,90,.4);color:var(--gold);font-size:.65rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;border-radius:3px;padding:2px 8px;margin:2px 20px 0}
+.promo-guide-cta{margin:16px 20px 0;background:var(--dark);color:#fff;border:none;border-radius:var(--radius-sm);padding:14px;font-family:'Jost',sans-serif;font-size:.8rem;font-weight:500;letter-spacing:2px;text-transform:uppercase;cursor:pointer;width:calc(100% - 40px);transition:background .2s;display:block}
+.info-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:2000;opacity:0;pointer-events:none;transition:opacity .25s;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.info-modal-overlay.open{opacity:1;pointer-events:auto}
+.info-modal{position:fixed;bottom:0;left:50%;transform:translateX(-50%) translateY(20px);width:100%;max-width:500px;background:#fff;border-radius:16px 16px 0 0;padding:26px 22px 32px;z-index:2001;box-shadow:0 -8px 32px rgba(0,0,0,.15);transition:transform .3s,opacity .25s;opacity:0}
+.info-modal-overlay.open .info-modal{transform:translateX(-50%) translateY(0);opacity:1}
+.info-modal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.info-modal-title{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:500;letter-spacing:1px}
+.info-modal-close{background:none;border:none;font-size:1.2rem;color:var(--muted);cursor:pointer;padding:4px}
+.info-modal-body{font-size:.8rem;color:var(--muted);line-height:1.7;border-top:1px solid #f0ede7;padding-top:12px}
+.info-modal-badge{display:inline-block;font-size:.58rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);border:1px solid rgba(184,151,90,.4);border-radius:3px;padding:2px 7px;margin-bottom:10px}
+@media screen and (-webkit-min-device-pixel-ratio:0){input[type="text"],input[type="search"],textarea,select{font-size:16px!important}}
+</style>
+</head>
+<body>
+<div class="announcement-bar" role="marquee">
+<div class="marquee-track">
+<span>✦ ENVÍO GRATIS SUPERANDO $1200 <span class="marquee-sep">◆</span></span>
+<span>ALTA CONCENTRACIÓN · LARGA DURACIÓN · ALTA ESTELA <span class="marquee-sep">◆</span></span>
+<span>AROMAS INSPIRADOS EN LAS MEJORES CASAS DEL MUNDO <span class="marquee-sep">◆</span></span>
+<span>🧴 AHORA TAMBIÉN CUIDADO CORPORAL ORGÁNICO <span class="marquee-sep">◆</span></span>
+</div>
+</div>
+
+<div class="toast" id="toast"></div>
+<div class="cart-overlay" id="cart-overlay" onclick="closeCart()"></div>
+<aside class="cart-drawer" id="cart-drawer">
+<div class="drawer-header">
+<div class="drawer-header-left"><span class="drawer-title">Carrito</span><span class="drawer-item-count" id="drawer-item-count">0</span></div>
+<button class="drawer-close" onclick="closeCart()">✕</button>
+</div>
+<div class="drawer-body" id="drawer-body">
+<div class="drawer-empty" id="drawer-empty">
+<div class="drawer-empty-icon">🛒</div>
+<div class="drawer-empty-title">Tu carrito está vacío</div>
+<div class="drawer-empty-sub">Selecciona un producto y añádelo<br>para comenzar tu pedido.</div>
+</div>
+<div class="drawer-items" id="drawer-items" style="display:none;"></div>
+</div>
+<div class="drawer-footer" id="drawer-footer" style="display:none;">
+<div class="drawer-totals" id="drawer-totals"></div>
+<div class="drawer-actions">
+<button class="drawer-btn-wa" onclick="sendToWhatsApp()">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+Finalizar por WhatsApp
+</button>
+<button class="drawer-btn-clear" onclick="clearCart()">Vaciar carrito</button>
+</div>
+</div>
+</aside>
+
+<div class="header">
+<h1>Aion Perfumes</h1>
+<button class="info-btn unseen" id="info-btn-legal" onclick="openInfoModal('legal')" style="position:absolute;right:20px;">i</button>
+</div>
+
+<!-- Pestañas de categoría -->
+<div class="category-tabs">
+<button class="category-tab active" id="tab-btn-perfumes" onclick="switchTab('perfumes')">Perfumes</button>
+<button class="category-tab" id="tab-btn-cuerpo" onclick="switchTab('cuerpo')">Cuidado Corporal</button>
+</div>
+
+<!-- ============== TAB PERFUMES ============== -->
+<div id="tab-perfumes" class="tab-content active">
+<div class="stepper-grid" id="stepper">
+<div class="stepper-col"><div class="stepper-dot" data-step="size">1</div><span>Frasco</span></div>
+<div class="stepper-line" data-line="0"></div>
+<div class="stepper-col"><div class="stepper-dot" data-step="conc">2</div><span>Concentración</span></div>
+<div class="stepper-line" data-line="1"></div>
+<div class="stepper-col"><div class="stepper-dot" data-step="promo">3</div><span>Paquete</span></div>
+<div class="stepper-line" data-line="2"></div>
+<div class="stepper-col"><div class="stepper-dot" data-step="aroma">4</div><span>Aroma</span></div>
+</div>
+
+<button class="cart-fab" id="cart-fab" onclick="openCart()">🛒 <span class="cart-fab-count" id="cart-fab-count">0</span></button>
+
+<div class="container" id="main-container">
+<div class="product-image-wrap">
+<img src="https://i.ibb.co/s9xDQ6RR/Photoroom-20260422-231853.jpg?w=800&q=80" alt="Perfume Concentrado">
+<div class="rating-badge">★ 4.8 (1623 reseñas)</div>
+</div>
+<div class="product-info"><h2>Perfume Concentrado</h2><div class="product-subtitle">Longevidad · Alta Estela</div></div>
+
+<!-- PASO 1: FRASCO (tamaño + modelo) -->
+<div class="card" id="card-size">
+<div class="section-label"><span class="step-badge" id="step-badge-size">1</span> Frasco</div>
+<div class="size-grid">
+<button class="size-btn active" data-size="30ml" onclick="selectSize('30ml')">30 ml</button>
+<button class="size-btn" data-size="100ml" onclick="selectSize('100ml')">100 ml</button>
+</div>
+<div class="model-grid" id="model-grid"></div>
+<div class="price-shimmer" id="selected-price-display">$188.00 MXN</div>
+<div class="price-note">El precio depende del modelo de frasco seleccionado</div>
+</div>
+
+<!-- PASO 2: CONCENTRACIÓN (descriptiva, no altera precio) -->
+<div class="card" id="card-conc">
+<div class="section-label"><span class="step-badge" id="step-badge-conc">2</span> Concentración</div>
+<div class="conc-grid">
+<button class="conc-btn" data-conc="edp" onclick="selectConc('edp')"><div class="conc-dots"><span></span></div><span>EDP</span><small>Eau de Parfum</small></button>
+<button class="conc-btn active" data-conc="33" onclick="selectConc('33')"><div class="conc-dots"><span></span><span></span></div><span>Parfum</span><small>Parfum</small></button>
+<button class="conc-btn" data-conc="42" onclick="selectConc('42')"><div class="conc-dots"><span></span><span></span><span></span></div><span>Parfum Premium</span><small>Alta concentración</small></button>
+<button class="conc-btn" data-conc="50" onclick="selectConc('50')"><div class="conc-dots"><span></span><span></span><span></span><span></span></div><span>Extrait</span><small>Máxima intensidad</small></button>
+</div>
+<div class="price-note" style="margin-top:10px;">La concentración no modifica el precio; el costo lo define el modelo de frasco.</div>
+</div>
+
+<!-- PASO 3: PAQUETES -->
+<div class="card" id="card-promo">
+<div class="section-label"><span class="step-badge" id="step-badge-promo">3</span> Paquetes Especiales (Opcional)</div>
+<p class="promo-instruction">⚠️ <strong>Importante:</strong> Todos los aromas del paquete comparten la misma presentación, modelo de frasco y concentración.</p>
+<div class="promo-bento">
+<button class="promo-btn promo-100" id="promo-100-btn" onclick="startPromo('100ml')">4 × 3<br>100ml <small id="promo-100-price"></small></button>
+<button class="promo-btn promo-30" id="promo-30-btn" onclick="startPromo('30ml')" style="position:relative;">6 × 5<br>30ml <small id="promo-30-price"></small><span class="promo-badge-bestseller">Más vendido</span></button>
+</div>
+<div class="promo-status" id="promo-status">
+<div id="promo-status-text"></div>
+<div class="promo-selected-list" id="promo-selected-list"></div>
+<button class="btn-cancel-promo-inline" onclick="cancelPromo()">✕ Cancelar paquete</button>
+</div>
+<div class="finish-promo-wrapper" id="finish-promo-wrapper"><button class="btn-finish-promo" onclick="finishPromo()">🎁 Añadir paquete al carrito</button></div>
+<div class="promo-hint" id="promo-hint"><div class="promo-hint-inner" id="promo-hint-text">Selecciona todos los aromas en el paso 4</div></div>
+</div>
+
+<!-- PASO 4: AROMA + FEROMONAS -->
+<div class="card" id="card-aroma">
+<div class="section-label"><span class="step-badge" id="step-badge-aroma">4</span> Selección de Aroma <button class="info-btn unseen" id="info-btn-aromas" onclick="openInfoModal('aromas')">i</button></div>
+<div class="search-wrap">
+<span class="search-icon">🔍</span>
+<input type="text" id="search-input" placeholder="Buscar por código, marca, familia olfativa...">
+<div class="search-results" id="search-results"></div>
+</div>
+<div class="selected-aroma-card" id="selected-aroma-card">
+<div class="aroma-text"><strong id="tag-name">Aroma seleccionado</strong><small id="tag-category">Marca · Familia</small><small id="tag-occasion">Ocasión</small></div>
+<button class="remove-aroma" onclick="clearAroma()">✕</button>
+</div>
+<!-- Feromonas directo en selección individual -->
+<div class="aroma-feromonas-row" id="aroma-feromonas-row">
+<div class="addon-switch-wrap" onclick="toggleIndividualFeromonas()">
+<div class="addon-switch-info">
+<span class="addon-switch-label">Adición de Feromonas</span>
+<span class="addon-switch-desc">+6% del precio · Mejora atracción e impacto</span>
+</div>
+<span class="addon-switch-price" id="feromonas-price-label">+6%</span>
+<div class="ios-switch" id="ios-switch-individual"></div>
+</div>
+</div>
+</div>
+
+<!-- CANTIDAD -->
+<div class="card" id="quantity-section">
+<div style="display:flex;align-items:center;justify-content:space-between;">
+<span class="section-label" style="margin:0;">Cantidad (Unidad)</span>
+<div class="qty-control"><button class="qty-btn" onclick="changeQty(-1)">−</button><div class="qty-display" id="qty-display">1</div><button class="qty-btn" onclick="changeQty(1)">+</button></div>
+</div>
+</div>
+
+<!-- CUPÓN -->
+<div class="card" id="card-coupon">
+<div class="section-label">Código Promocional</div>
+<div class="coupon-wrap">
+<input type="text" id="coupon-input" placeholder="Ingresa tu código aquí" maxlength="20">
+<button class="btn-apply-coupon" onclick="applyCoupon()">Aplicar</button>
+</div>
+<div class="coupon-feedback" id="coupon-feedback">
+<span class="coupon-feedback-icon" id="coupon-icon"></span>
+<span class="coupon-feedback-text" id="coupon-text"></span>
+<button class="btn-remove-coupon" id="btn-remove-coupon" onclick="removeCoupon()" style="display:none;">✕</button>
+</div>
+</div>
+</div>
+
+<div class="bottom-bar" id="bottom-bar">
+<div class="bottom-bar-preview">
+<div class="bottom-bar-label" id="bottom-bar-label">Total estimado</div>
+<div class="bottom-bar-price" id="bottom-bar-price">$188.00</div>
+</div>
+<button class="btn-add" id="btn-add-bottom" onclick="addToCart()">Añadir al carrito</button>
+</div>
+</div>
+
+<!-- ============== TAB CUERPO ============== -->
+<div id="tab-cuerpo" class="tab-content">
+<div class="container" style="padding-top:14px;">
+<div class="card">
+<div class="section-label"><span class="step-badge" style="background:var(--gold);">🧴</span> Cuidado Corporal</div>
+<div class="bodycare-grid" id="bodycare-grid"></div>
+</div>
+<!-- CUPÓN (mismo que perfumes, versión duplicada con IDs únicos) -->
+<div class="card">
+<div class="section-label">Código Promocional</div>
+<div class="coupon-wrap">
+<input type="text" id="coupon-input-cuerpo" placeholder="Ingresa tu código aquí" maxlength="20">
+<button class="btn-apply-coupon" onclick="applyCouponFrom('coupon-input-cuerpo')">Aplicar</button>
+</div>
+<div class="coupon-feedback" id="coupon-feedback-cuerpo">
+<span class="coupon-feedback-icon" id="coupon-icon-cuerpo"></span>
+<span class="coupon-feedback-text" id="coupon-text-cuerpo"></span>
+<button class="btn-remove-coupon" id="btn-remove-coupon-cuerpo" onclick="removeCoupon()" style="display:none;">✕</button>
+</div>
+</div>
+</div>
+
+<div class="bottom-bar" id="bottom-bar-cuerpo">
+<div class="bottom-bar-preview">
+<div class="bottom-bar-label">Total en carrito</div>
+<div class="bottom-bar-price" id="bottom-bar-price-cuerpo">$0.00</div>
+</div>
+<button class="btn-add" onclick="openCart()">Ver carrito</button>
+</div>
+</div>
+
+<!-- ============== MODALES Y GUÍAS ============== -->
+<div class="promo-guide-overlay" id="promo-guide-overlay" onclick="closePromoGuide()">
+<div class="promo-guide-modal" onclick="event.stopPropagation()">
+<div class="promo-guide-handle"></div>
+<div class="promo-guide-header">
+<div><div class="promo-guide-eyebrow">Paquete activado ✦</div><div class="promo-guide-title" id="promo-guide-title">Lleva 6, paga 5</div></div>
+<button class="promo-guide-close" onclick="closePromoGuide()">✕</button>
+</div>
+<div class="promo-guide-badge" id="promo-guide-badge">30 ml · Parfum</div>
+<div class="promo-guide-steps">
+<div class="promo-guide-step"><div class="promo-guide-step-num">1</div><div><div class="promo-guide-step-title">Busca aromas en el Paso 4</div><div class="promo-guide-step-desc">Usa el buscador para encontrar cada aroma.</div></div></div>
+<div class="promo-guide-step"><div class="promo-guide-step-num">2</div><div><div class="promo-guide-step-title">Selecciona <span id="promo-guide-qty">6</span> unidades</div><div class="promo-guide-step-desc">Puedes repetir aromas con los botones +/−.</div></div></div>
+<div class="promo-guide-step"><div class="promo-guide-step-num">3</div><div><div class="promo-guide-step-title">Activa feromonas por aroma</div><div class="promo-guide-step-desc">Botón <strong>F</strong> en cada aroma si deseas +6%.</div></div></div>
+<div class="promo-guide-step"><div class="promo-guide-step-num gold">✓</div><div><div class="promo-guide-step-title">Presiona "Añadir paquete"</div><div class="promo-guide-step-desc">Luego finaliza por WhatsApp desde el carrito.</div></div></div>
+</div>
+<button class="promo-guide-cta" onclick="closePromoGuide()">¡Entendido!</button>
+</div>
+</div>
+
+<div class="info-modal-overlay" id="modal-legal-overlay" onclick="closeInfoModal('legal')">
+<div class="info-modal" onclick="event.stopPropagation()">
+<div class="info-modal-header"><span class="info-modal-title">Aviso Legal</span><button class="info-modal-close" onclick="closeInfoModal('legal')">✕</button></div>
+<div class="info-modal-body"><div class="info-modal-badge">Art. 213 · Ley de Propiedad Industrial</div><p>En <strong>Aion Perfumes</strong> vendemos perfumes <strong>inspirados en diseñadores/marcas</strong>. No somos titulares de las marcas registradas. Todos los nombres de diseñadores son propiedad de sus respectivos dueños. Nuestros productos son interpretaciones olfativas.</p></div>
+</div>
+</div>
+<div class="info-modal-overlay" id="modal-aromas-overlay" onclick="closeInfoModal('aromas')">
+<div class="info-modal" onclick="event.stopPropagation()">
+<div class="info-modal-header"><span class="info-modal-title">Disponibilidad de Aromas</span><button class="info-modal-close" onclick="closeInfoModal('aromas')">✕</button></div>
+<div class="info-modal-body"><div class="info-modal-badge">Nota importante</div><p>Algunos aromas están <strong>sujetos a disponibilidad en tienda</strong>. Si tu aroma seleccionado no está disponible, te contactaremos para ofrecerte alternativas similares.</p></div>
+</div>
+</div>
+
+<script>
+/* ==========================================================================
+   CONFIGURACIÓN GENERAL
+   ========================================================================== */
+const WA_NUMBER = "528138917727";
+const PROMO_CODES = {
+  "A10N": {discount:10,type:"percent",description:"10% de descuento"},
+  "RC64": {discount:10,type:"percent",description:"10% de descuento"},
+  "J10EC":{discount:10,type:"percent",description:"10% de descuento"},
+  "HT10": {discount:10,type:"percent",description:"10% de descuento"},
+  "AT10": {discount:10,type:"percent",description:"10% de descuento"},
+  "PECH10":{discount:10,type:"percent",description:"10% de descuento"},
+  "DT10": {discount:10,type:"percent",description:"10% de descuento"},
+  "DOSH10":{discount:10,type:"percent",description:"10% de descuento"},
+  "L10S": {discount:10,type:"percent",description:"10% de descuento"},
+  "HAMMSYK":{discount:10,type:"percent",description:"10% de descuento"},
+  "AION15X":{discount:1,type:"percent",description:"1% de descuento"},
+  "MOM10":{discount:10,type:"percent",description:"10% de descuento"}
+};
+const FEROMONAS_RATE = 0.06; // +6%
+
+/* ==========================================================================
+   ✏️ EDITA AQUÍ: MODELOS DE FRASCO
+   Cambia name, price e image de cada modelo. Hay 6 por tamaño.
+   ========================================================================== */
+const BOTTLE_MODELS = {
+  '30ml': [
+    { id:'30-1', name:'Frasco Clásico 30ml',   price:188, image:'https://via.placeholder.com/200x200?text=30ml+1' },
+    { id:'30-2', name:'Frasco Elegante 30ml',  price:210, image:'https://via.placeholder.com/200x200?text=30ml+2' },
+    { id:'30-3', name:'Frasco Dorado 30ml',    price:235, image:'https://via.placeholder.com/200x200?text=30ml+3' },
+    { id:'30-4', name:'Frasco Cristal 30ml',   price:255, image:'https://via.placeholder.com/200x200?text=30ml+4' },
+    { id:'30-5', name:'Frasco Premium 30ml',   price:275, image:'https://via.placeholder.com/200x200?text=30ml+5' },
+    { id:'30-6', name:'Frasco Signature 30ml', price:295, image:'https://via.placeholder.com/200x200?text=30ml+6' }
+  ],
+  '100ml': [
+    { id:'100-1', name:'Frasco Clásico 100ml',   price:432, image:'https://via.placeholder.com/200x200?text=100ml+1' },
+    { id:'100-2', name:'Frasco Elegante 100ml',  price:480, image:'https://via.placeholder.com/200x200?text=100ml+2' },
+    { id:'100-3', name:'Frasco Dorado 100ml',    price:525, image:'https://via.placeholder.com/200x200?text=100ml+3' },
+    { id:'100-4', name:'Frasco Cristal 100ml',   price:565, image:'https://via.placeholder.com/200x200?text=100ml+4' },
+    { id:'100-5', name:'Frasco Premium 100ml',   price:610, image:'https://via.placeholder.com/200x200?text=100ml+5' },
+    { id:'100-6', name:'Frasco Signature 100ml', price:655, image:'https://via.placeholder.com/200x200?text=100ml+6' }
+  ]
+};
+
+/* ==========================================================================
+   ✏️ EDITA AQUÍ: PRODUCTOS DE CUIDADO CORPORAL
+   Cambia name, price e image de cada producto.
+   ========================================================================== */
+const BODY_CARE = [
+  { id:'crema',     name:'Crema Corporal 50ml',            price:129, image:'https://via.placeholder.com/200x200?text=Crema' },
+  { id:'deo-rollon',name:'Desodorante Roll-on 50ml',       price:129, image:'https://via.placeholder.com/200x200?text=Deo+Rollon' },
+  { id:'balsamo',   name:'Bálsamo Orgánico Corporal',      price:149, image:'https://via.placeholder.com/200x200?text=Balsamo' },
+  { id:'deo-barra', name:'Desodorante Orgánico en Barra',  price:139, image:'https://via.placeholder.com/200x200?text=Deo+Barra' }
+];
+
+const CONCENTRATIONS = {
+  'edp': { label:'EDP',           desc:'Eau de Parfum',    dots:1 },
+  '33':  { label:'Parfum',        desc:'Parfum',            dots:2 },
+  '42':  { label:'Parfum Premium',desc:'Alta concentración',dots:3 },
+  '50':  { label:'Extrait',       desc:'Máxima intensidad', dots:4 }
+};
+
+const AROMAS = [
+  {codigo:"D0302NA",nombre:"9AM POUR FEMME DE AFNAN",brand:"AFNAN",familia:"Oriental",salida:"Pera, Ciruela, Azafrán",corazon:"Rosa, Jazmín, Iris",fondo:"Vainilla, Ámbar, Almizcle, Sándalo",caracter_energetico:"Cálido, sensual, femenino, nocturno"},
+  {codigo:"C0208NA",nombre:"9PM DE AFNAN",brand:"AFNAN",familia:"Ámbar Vainilla",salida:"Canela, Manzana, Lavanda",corazon:"Iris, Vainilla, Jazmín",fondo:"Ámbar, Almizcle blanco, Sándalo, Cachemira",caracter_energetico:"Seductor, cálido, envolvente, nocturno"},
+  {codigo:"C0271NA",nombre:"9PM ELIXIR BY AFNAN",brand:"AFNAN",familia:"Oriental Especiada",salida:"Canela, Manzana, Lavanda, Azafrán",corazon:"Iris, Rosa, Jazmín",fondo:"Vainilla, Ámbar, Oud, Almizcle, Sándalo",caracter_energetico:"Intenso, opulento, nocturno, magnético"},
+  {codigo:"DP02864",nombre:"MILLION GOLD FOR HER",brand:"RABANNE",familia:"Floral",salida:"Bergamota, Limón, Frambuesa",corazon:"Jazmín, Rosa, Lirio",fondo:"Cedro, Vainilla, Almizcle",caracter_energetico:"Cálido, floral, oro, nocturno"}
+];
+
+/* ==========================================================================
+   ESTADO
+   ========================================================================== */
+let activeTab = 'perfumes';
+let selectedSize = '30ml';
+let selectedModelId = '30-1';
+let selectedConc = '33';
+let state = {
+  selectedAroma: null,
+  withFeromonas: false,
+  quantity: 1,
+  cartItems: [],
+  appliedCoupon: null
+};
+let promoState = {
+  active:false, volume:null, required:0, payFor:0, basePrice:0,
+  concentration:null, selectedAromas:[]
+};
+let bodycareQty = {}; // {productId: qty}
+BODY_CARE.forEach(p => bodycareQty[p.id] = 1);
+
+const stepOrder = ['size','conc','promo','aroma'];
+const completedSteps = new Set();
+
+/* ==========================================================================
+   HELPERS
+   ========================================================================== */
+function getCurrentModel() {
+  return BOTTLE_MODELS[selectedSize].find(m => m.id === selectedModelId)
+      || BOTTLE_MODELS[selectedSize][0];
+}
+function getBasePrice() { return getCurrentModel().price; }
+function unitPriceWithFeromonas(base, feromonas) {
+  return feromonas ? base * (1 + FEROMONAS_RATE) : base;
+}
+function calcPackageTotal(p) {
+  const feromonasCount = p.selectedAromas.reduce((s,a) => s + (a.withFeromonas ? a.quantity : 0), 0);
+  const paidFeromonas = Math.min(feromonasCount, p.payFor);
+  return p.basePrice * p.payFor + paidFeromonas * p.basePrice * FEROMONAS_RATE;
+}
+function getTotalPromoUnits() {
+  return promoState.selectedAromas.reduce((s,a) => s + a.quantity, 0);
+}
+
+/* ==========================================================================
+   TABS
+   ========================================================================== */
+function switchTab(tab) {
+  activeTab = tab;
+  document.getElementById('tab-btn-perfumes').classList.toggle('active', tab === 'perfumes');
+  document.getElementById('tab-btn-cuerpo').classList.toggle('active', tab === 'cuerpo');
+  document.getElementById('tab-perfumes').classList.toggle('active', tab === 'perfumes');
+  document.getElementById('tab-cuerpo').classList.toggle('active', tab === 'cuerpo');
+  document.getElementById('bottom-bar').style.display = tab === 'perfumes' ? 'flex' : 'none';
+  document.getElementById('bottom-bar-cuerpo').style.display = tab === 'cuerpo' ? 'flex' : 'none';
+  if (tab === 'cuerpo') updateBodycareBottomBar();
+  else updateBottomBar();
+}
+
+/* ==========================================================================
+   RENDER MODEL GRID
+   ========================================================================== */
+function renderModelGrid() {
+  const grid = document.getElementById('model-grid');
+  grid.innerHTML = BOTTLE_MODELS[selectedSize].map(m => `
+    <div class="model-card ${m.id === selectedModelId ? 'active' : ''}" onclick="selectModel('${m.id}')">
+      <img src="${m.image}" alt="${m.name}" onerror="this.style.background='#e0dcd4'">
+      <div class="model-name">${m.name}</div>
+      <div class="model-price">$${m.price.toFixed(2)}</div>
+    </div>
+  `).join('');
+}
+function selectModel(id) {
+  selectedModelId = id;
+  renderModelGrid();
+  updatePriceDisplay();
+  if (promoState.active) { cancelPromo(); showToast('Paquete cancelado al cambiar modelo'); }
+  markStepComplete('size');
+  handleStepCompletion();
+  updateBottomBar();
+}
+function selectSize(size) {
+  selectedSize = size;
+  selectedModelId = BOTTLE_MODELS[size][0].id;
+  document.querySelectorAll('.size-btn').forEach(b => b.classList.toggle('active', b.dataset.size === size));
+  renderModelGrid();
+  updatePriceDisplay();
+  if (promoState.active) { cancelPromo(); showToast('Paquete cancelado al cambiar presentación'); }
+  markStepComplete('size');
+  handleStepCompletion();
+  updateBottomBar();
+}
+function updatePriceDisplay() {
+  const m = getCurrentModel();
+  document.getElementById('selected-price-display').textContent = '$' + m.price.toFixed(2) + ' MXN';
+  const fLabel = document.getElementById('feromonas-price-label');
+  if (fLabel) fLabel.textContent = '+$' + (m.price * FEROMONAS_RATE).toFixed(2) + ' (6%)';
+}
+
+/* ==========================================================================
+   CONCENTRACIÓN
+   ========================================================================== */
+function selectConc(conc) {
+  selectedConc = conc;
+  document.querySelectorAll('.conc-btn').forEach(b => b.classList.toggle('active', b.dataset.conc === conc));
+  if (promoState.active) { cancelPromo(); showToast('Paquete cancelado al cambiar concentración'); }
+  markStepComplete('conc');
+  handleStepCompletion();
+}
+
+/* ==========================================================================
+   STEPPER
+   ========================================================================== */
+function updateStepper() {
+  const cols = document.querySelectorAll('.stepper-col');
+  const lines = document.querySelectorAll('.stepper-line');
+  cols.forEach(col => {
+    const step = col.querySelector('.stepper-dot').dataset.step;
+    col.classList.toggle('completed', completedSteps.has(step));
+    const dot = col.querySelector('.stepper-dot');
+    dot.classList.remove('active','completed');
+    if (completedSteps.has(step)) { dot.classList.add('completed'); dot.textContent = '✓'; }
+    else dot.textContent = stepOrder.indexOf(step) + 1;
+  });
+  document.querySelectorAll('.stepper-dot').forEach(dot => {
+    if (!completedSteps.has(dot.dataset.step) && !dot.classList.contains('completed')) {
+      dot.classList.add('active');
+    }
+  });
+  lines.forEach((line,i) => line.classList.toggle('done', completedSteps.has(stepOrder[i])));
+  ['size','conc','promo','aroma'].forEach(s => {
+    const badge = document.getElementById('step-badge-'+s);
+    if (badge) {
+      if (completedSteps.has(s)) { badge.textContent = '✓'; badge.classList.add('done'); }
+      else { badge.textContent = stepOrder.indexOf(s) + 1; badge.classList.remove('done'); }
+    }
+  });
+}
+function markStepComplete(step) {
+  if (!completedSteps.has(step)) { completedSteps.add(step); updateStepper(); }
+}
+function handleStepCompletion() {
+  if (selectedSize && getCurrentModel()) markStepComplete('size');
+  if (selectedConc) markStepComplete('conc');
+  if (promoState.active && getTotalPromoUnits() === promoState.required) markStepComplete('promo');
+  if (state.selectedAroma) markStepComplete('aroma');
+  updateBottomBar();
+}
+
+/* ==========================================================================
+   CARRITO
+   ========================================================================== */
+function openCart() {
+  document.getElementById('cart-overlay').classList.add('open');
+  document.getElementById('cart-drawer').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeCart() {
+  document.getElementById('cart-overlay').classList.remove('open');
+  document.getElementById('cart-drawer').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function updateCartDrawer() {
+  const items = state.cartItems, count = items.length;
+  const fab = document.getElementById('cart-fab');
+  document.getElementById('cart-fab-count').textContent = count;
+  if (count > 0) { fab.classList.add('visible'); fab.classList.remove('pulse'); void fab.offsetWidth; fab.classList.add('pulse'); }
+  else fab.classList.remove('visible');
+  document.getElementById('drawer-item-count').textContent = count;
+  const emptyEl = document.getElementById('drawer-empty');
+  const itemsEl = document.getElementById('drawer-items');
+  const footerEl = document.getElementById('drawer-footer');
+  if (count === 0) { emptyEl.style.display='flex'; itemsEl.style.display='none'; footerEl.style.display='none'; updateBodycareBottomBar(); return; }
+  emptyEl.style.display='none'; itemsEl.style.display='block'; footerEl.style.display='block';
+
+  let html = '';
+  items.forEach((item,i) => {
+    if (item.type === 'individual') {
+      const fLabel = item.withFeromonas ? ' · + Feromonas (+6%)' : '';
+      html += `<div class="drawer-cart-item"><div class="drawer-item-header"><div class="drawer-item-icon">🌿</div><div class="drawer-item-meta"><div class="drawer-item-name">[${item.aroma.codigo}] ${item.aroma.nombre}</div><div class="drawer-item-sub">${item.modelName} · ${item.concentration}${fLabel} ×${item.quantity}</div>${item.withFeromonas?'<span class="drawer-feromonas-badge">✨ Feromonas</span>':''}</div></div><div class="drawer-item-price-row"><span class="drawer-item-price">$${item.total.toFixed(2)} MXN</span><button class="drawer-remove-btn" onclick="removeCartItem(${i})">Eliminar</button></div></div>`;
+    } else if (item.type === 'promo') {
+      const aromasHtml = item.aromas.map(a => `<div class="drawer-promo-aroma-row"><span><span class="drawer-promo-aroma-code">${a.codigo}</span> ${a.nombre} ×${a.quantity}${a.withFeromonas?' <span style="color:#6b3fa0;font-weight:600;">✨F</span>':''}</span></div>`).join('');
+      html += `<div class="drawer-cart-item"><div class="drawer-item-header"><div class="drawer-item-icon">🎁</div><div class="drawer-item-meta"><div class="drawer-item-name">Paquete ${item.volume} (${item.required}×${item.payFor})</div><div class="drawer-item-sub">${item.modelName} · ${item.concentration}</div></div></div><div class="drawer-item-price-row"><span class="drawer-item-price">$${item.total.toFixed(2)} MXN</span><button class="drawer-remove-btn" onclick="removeCartItem(${i})">Eliminar</button></div><button class="drawer-promo-toggle" id="promo-toggle-${i}" onclick="togglePromoDetail(${i})">Ver ${item.aromas.length} aromas <span class="toggle-arrow">▾</span></button><div class="drawer-promo-details" id="promo-detail-${i}"><div class="drawer-promo-details-inner"><span class="drawer-promo-badge">🎁 llevas ${item.required} · pagas ${item.payFor}</span>${aromasHtml}</div></div></div>`;
+    } else if (item.type === 'bodycare') {
+      html += `<div class="drawer-cart-item"><div class="drawer-item-header"><div class="drawer-item-icon">🧴</div><div class="drawer-item-meta"><div class="drawer-item-name">${item.product.name}</div><div class="drawer-item-sub">Cuidado corporal ×${item.quantity}</div></div></div><div class="drawer-item-price-row"><span class="drawer-item-price">$${item.total.toFixed(2)} MXN</span><button class="drawer-remove-btn" onclick="removeCartItem(${i})">Eliminar</button></div></div>`;
+    }
+  });
+  itemsEl.innerHTML = html;
+
+  const subtotal = items.reduce((s,i) => s + i.total, 0);
+  const discount = calculateDiscount(subtotal);
+  const hasPromo = items.some(i => i.type === 'promo');
+  const subtotalAfter = subtotal - discount;
+  const freeShipping = (subtotalAfter >= 1200) || hasPromo;
+  const shippingCost = freeShipping ? 0 : 149;
+  const grandTotal = subtotalAfter + shippingCost;
+
+  let totalsHtml = `<div class="drawer-total-row subtotal"><span>Subtotal (${count} ${count===1?'artículo':'artículos'})</span><span>$${subtotal.toFixed(2)}</span></div>`;
+  if (state.appliedCoupon) {
+    totalsHtml += `<div class="drawer-coupon-row"><span>🏷️</span><span class="drawer-coupon-code">${state.appliedCoupon.code}</span><span class="drawer-coupon-desc">${state.appliedCoupon.description}</span><button class="drawer-coupon-remove" onclick="removeCoupon()">✕</button></div>`;
+  }
+  if (discount > 0) totalsHtml += `<div class="drawer-total-row discount"><span>Descuento</span><span>−$${discount.toFixed(2)}</span></div>`;
+  if (freeShipping) totalsHtml += `<div class="drawer-total-row shipping-free"><span>🚚 Envío</span><span>✓ Gratis</span></div>`;
+  else {
+    const needed = (1200 - subtotalAfter).toFixed(2);
+    const pct = Math.min(100, (subtotalAfter/1200)*100);
+    totalsHtml += `<div class="drawer-total-row"><span>🚚 Envío</span><div style="text-align:right;"><span>$149.00</span><span style="font-size:.65rem;color:#b8975a;display:block;">Falta $${needed} para envío gratis</span><div class="shipping-progress"><div class="shipping-progress-fill" style="width:${pct}%"></div></div></div></div>`;
+  }
+  totalsHtml += `<div class="drawer-grand-total"><span class="label">Total Estimado</span><span class="amount">$${grandTotal.toFixed(2)}</span></div>`;
+  document.getElementById('drawer-totals').innerHTML = totalsHtml;
+  updateBodycareBottomBar();
+  updateBottomBar();
+}
+
+function togglePromoDetail(i) {
+  document.getElementById(`promo-toggle-${i}`).classList.toggle('expanded');
+  document.getElementById(`promo-detail-${i}`).classList.toggle('expanded');
+}
+function removeCartItem(i) { state.cartItems.splice(i,1); updateCartDrawer(); showToast('Producto eliminado'); }
+function clearCart() {
+  state.cartItems = [];
+  state.appliedCoupon = null;
+  document.getElementById('coupon-input').disabled = false;
+  document.getElementById('coupon-input').value = '';
+  document.getElementById('coupon-feedback').className = 'coupon-feedback';
+  document.getElementById('coupon-feedback').style.display = 'none';
+  const c2 = document.getElementById('coupon-input-cuerpo');
+  if (c2) { c2.disabled = false; c2.value = ''; }
+  const f2 = document.getElementById('coupon-feedback-cuerpo');
+  if (f2) { f2.className = 'coupon-feedback'; f2.style.display = 'none'; }
+  updateCartDrawer();
+  closeCart();
+  showToast('Carrito vaciado');
+}
+
+/* ==========================================================================
+   BOTTOM BAR
+   ========================================================================== */
+function updateBottomBar() {
+  if (activeTab !== 'perfumes') return;
+  const labelEl = document.getElementById('bottom-bar-label');
+  const priceEl = document.getElementById('bottom-bar-price');
+  const btnEl = document.getElementById('btn-add-bottom');
+
+  if (promoState.active) {
+    const totalUnits = getTotalPromoUnits();
+    const isComplete = totalUnits === promoState.required;
+    const total = calcPackageTotal(promoState);
+    labelEl.textContent = isComplete ? 'Total paquete' : 'Precio del paquete';
+    priceEl.textContent = '$' + total.toFixed(2) + ' MXN';
+    if (isComplete) { btnEl.textContent = 'Añadir paquete'; btnEl.onclick = finishPromo; }
+    else { btnEl.textContent = `Completar (${totalUnits}/${promoState.required})`; btnEl.onclick = () => scrollToStep('aroma'); }
+    return;
+  }
+  const base = getBasePrice();
+  const feromonasCost = state.withFeromonas ? base * FEROMONAS_RATE : 0;
+  const total = (base + feromonasCost) * state.quantity;
+  labelEl.textContent = 'Total estimado';
+  priceEl.textContent = '$' + total.toFixed(2) + ' MXN';
+  btnEl.textContent = 'Añadir al carrito';
+  btnEl.onclick = addToCart;
+}
+function updateBodycareBottomBar() {
+  const total = state.cartItems.reduce((s,i) => s + i.total, 0);
+  const el = document.getElementById('bottom-bar-price-cuerpo');
+  if (el) el.textContent = '$' + total.toFixed(2) + ' MXN';
+}
+function scrollToStep(step) {
+  const cardMap = {'size':'card-size','conc':'card-conc','promo':'card-promo','aroma':'card-aroma'};
+  const card = document.getElementById(cardMap[step]);
+  if (card) card.scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+/* ==========================================================================
+   BÚSQUEDA DE AROMAS
+   ========================================================================== */
+const searchInput = document.getElementById('search-input');
+const searchResults = document.getElementById('search-results');
+searchInput.addEventListener('input', () => {
+  const q = searchInput.value.toLowerCase().trim();
+  if (!q) { searchResults.classList.remove('visible'); return; }
+  const matches = AROMAS.filter(a =>
+    a.codigo.toLowerCase().includes(q) || a.nombre.toLowerCase().includes(q) ||
+    a.brand.toLowerCase().includes(q) || a.familia.toLowerCase().includes(q) ||
+    (a.caracter_energetico && a.caracter_energetico.toLowerCase().includes(q))
+  );
+  searchResults.innerHTML = matches.length === 0
+    ? `<div class="search-result-item"><span style="color:var(--muted)">Sin resultados</span></div>`
+    : matches.map(a => {
+        const idx = AROMAS.indexOf(a);
+        return `<div class="search-result-item" onclick="handleAromaSelection(${idx})"><span class="aroma-code">${a.codigo}</span><div class="aroma-info"><div class="aroma-name">${a.nombre}</div><div class="aroma-meta">${a.brand} · ${a.familia}</div></div></div>`;
+      }).join('');
+  searchResults.classList.add('visible');
+});
+document.addEventListener('click', e => { if (!e.target.closest('.search-wrap')) searchResults.classList.remove('visible'); });
+
+function handleAromaSelection(idx) {
+  const aroma = AROMAS[idx];
+  if (promoState.active) addToPromoSelection(aroma);
+  else selectAroma(aroma);
+  searchResults.classList.remove('visible');
+  searchInput.value = '';
+  if (promoState.active && getTotalPromoUnits() === promoState.required) scrollToStep('aroma');
+}
+function selectAroma(aroma) {
+  state.selectedAroma = aroma;
+  document.getElementById('tag-name').textContent = '[' + aroma.codigo + '] ' + aroma.nombre;
+  document.getElementById('tag-category').textContent = aroma.brand + ' · ' + aroma.familia;
+  document.getElementById('tag-occasion').textContent = aroma.caracter_energetico || '';
+  document.getElementById('selected-aroma-card').classList.add('visible');
+  document.getElementById('aroma-feromonas-row').classList.add('visible');
+  updatePriceDisplay();
+  markStepComplete('aroma');
+  handleStepCompletion();
+  showToast('Seleccionado: ' + aroma.nombre);
+}
+function clearAroma() {
+  state.selectedAroma = null;
+  state.withFeromonas = false;
+  document.getElementById('selected-aroma-card').classList.remove('visible');
+  document.getElementById('aroma-feromonas-row').classList.remove('visible');
+  document.getElementById('ios-switch-individual').classList.remove('on');
+  handleStepCompletion();
+}
+function toggleIndividualFeromonas() {
+  state.withFeromonas = !state.withFeromonas;
+  document.getElementById('ios-switch-individual').classList.toggle('on', state.withFeromonas);
+  updateBottomBar();
+}
+
+/* ==========================================================================
+   PAQUETES
+   ========================================================================== */
+function startPromo(volume) {
+  if (getCurrentModel().id.split('-')[0] !== volume.replace('ml','')) {
+    showToast('⚠️ Selecciona un frasco de ' + volume + ' primero');
+    return;
+  }
+  const basePrice = getBasePrice();
+  let required, payFor;
+  if (volume === '100ml') { required = 4; payFor = 3; }
+  else if (volume === '30ml') { required = 6; payFor = 5; }
+  else return;
+
+  promoState = {
+    active:true, volume, required, payFor, basePrice,
+    concentration: CONCENTRATIONS[selectedConc].label,
+    selectedAromas:[]
+  };
+  document.querySelectorAll('.promo-btn').forEach(b => b.classList.remove('active'));
+  const btnId = volume === '100ml' ? 'promo-100-btn' : 'promo-30-btn';
+  document.getElementById(btnId).classList.add('active');
+  document.getElementById('promo-status').classList.add('visible');
+  state.selectedAroma = null;
+  document.getElementById('selected-aroma-card').classList.remove('visible');
+  document.getElementById('aroma-feromonas-row').classList.remove('visible');
+  state.withFeromonas = false;
+  document.getElementById('ios-switch-individual').classList.remove('on');
+  updatePromoUI();
+  const titles = {'100ml':'Lleva 4, paga 3','30ml':'Lleva 6, paga 5'};
+  openPromoGuide(volume, titles[volume], volume + ' · ' + CONCENTRATIONS[selectedConc].label, required);
+  scrollToStep('aroma');
+  handleStepCompletion();
+}
+
+function updatePromoUI() {
+  const totalUnits = getTotalPromoUnits(), required = promoState.required;
+  document.getElementById('promo-status-text').innerHTML =
+    `<strong>Aromas seleccionados (${totalUnits}/${required} unidades)</strong><br><small>${promoState.concentration} · ${getCurrentModel().name}</small>`;
+  const listDiv = document.getElementById('promo-selected-list');
+  if (promoState.selectedAromas.length === 0) listDiv.innerHTML = '';
+  else {
+    const canIncrease = totalUnits < required;
+    listDiv.innerHTML = promoState.selectedAromas.map((item,i) => `
+      <span class="promo-chip">
+        <span class="promo-chip-code">${item.aroma.codigo}</span>
+        <span class="promo-chip-name">${item.aroma.nombre}</span>
+        <button class="promo-chip-feromonas ${item.withFeromonas?'active':''}" title="Feromonas +6%" onclick="togglePromoAromaFeromonas(${i})">F</button>
+        <button class="promo-chip-qty-btn" onclick="changePromoAromaQty(${i},-1)">−</button>
+        <span style="font-weight:600;font-size:.72rem;min-width:14px;text-align:center;">${item.quantity}</span>
+        <button class="promo-chip-qty-btn" onclick="changePromoAromaQty(${i},1)" ${!canIncrease?'disabled':''}>+</button>
+        <span class="promo-chip-remove" onclick="removePromoAroma(${i})">✕</span>
+      </span>
+    `).join('');
+  }
+  const isComplete = totalUnits === required;
+  document.getElementById('finish-promo-wrapper').classList.toggle('visible', isComplete);
+  document.getElementById('promo-hint').classList.toggle('visible', promoState.active && !isComplete);
+  if (!isComplete) {
+    const falta = required - totalUnits;
+    document.getElementById('promo-hint-text').textContent = 'Faltan ' + falta + ' unidad' + (falta>1?'es':'') + ' por asignar';
+  }
+  if (isComplete) markStepComplete('promo');
+  handleStepCompletion();
+}
+
+function addToPromoSelection(aroma) {
+  const totalUnits = getTotalPromoUnits();
+  if (totalUnits >= promoState.required) { showToast('Ya completaste las ' + promoState.required + ' unidades'); return; }
+  const existing = promoState.selectedAromas.find(i => i.aroma.codigo === aroma.codigo);
+  if (existing) existing.quantity += 1;
+  else promoState.selectedAromas.push({aroma, quantity:1, withFeromonas:false});
+  updatePromoUI();
+  const newTotal = getTotalPromoUnits();
+  showToast(newTotal === promoState.required ? '✓ Paquete completo' : 'Añadido (' + newTotal + '/' + promoState.required + ')');
+}
+function changePromoAromaQty(i, delta) {
+  const item = promoState.selectedAromas[i];
+  const newQty = item.quantity + delta;
+  if (newQty <= 0) promoState.selectedAromas.splice(i,1);
+  else {
+    const totalUnits = getTotalPromoUnits();
+    if (delta > 0 && totalUnits >= promoState.required) return;
+    item.quantity = newQty;
+  }
+  updatePromoUI();
+}
+function togglePromoAromaFeromonas(i) {
+  promoState.selectedAromas[i].withFeromonas = !promoState.selectedAromas[i].withFeromonas;
+  updatePromoUI();
+}
+function removePromoAroma(i) { promoState.selectedAromas.splice(i,1); updatePromoUI(); }
+
+function finishPromo() {
+  const totalUnits = getTotalPromoUnits();
+  if (totalUnits !== promoState.required) { showToast('Debes completar exactamente ' + promoState.required + ' unidades'); return; }
+  const total = calcPackageTotal(promoState);
+  const cartAromas = promoState.selectedAromas.map(i => ({
+    codigo:i.aroma.codigo, nombre:i.aroma.nombre, quantity:i.quantity, withFeromonas:i.withFeromonas
+  }));
+  state.cartItems.push({
+    type:'promo', volume:promoState.volume, modelName:getCurrentModel().name,
+    concentration:promoState.concentration, required:promoState.required, payFor:promoState.payFor,
+    aromas:cartAromas, total
+  });
+  updateCartDrawer();
+  cancelPromo();
+  showToast('🎁 Paquete añadido');
+  setTimeout(openCart, 600);
+}
+function cancelPromo() {
+  promoState = {active:false, volume:null, required:0, payFor:0, basePrice:0, concentration:null, selectedAromas:[]};
+  document.querySelectorAll('.promo-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('promo-status').classList.remove('visible');
+  document.getElementById('finish-promo-wrapper').classList.remove('visible');
+  document.getElementById('promo-hint').classList.remove('visible');
+  handleStepCompletion();
+}
+
+/* ==========================================================================
+   CANTIDAD / AÑADIR INDIVIDUAL
+   ========================================================================== */
+function changeQty(delta) {
+  state.quantity = Math.max(1, state.quantity + delta);
+  document.getElementById('qty-display').textContent = state.quantity;
+  updateBottomBar();
+}
+function addToCart() {
+  if (!state.selectedAroma) { showToast('⚠️ Selecciona un aroma primero'); return; }
+  if (promoState.active) { showToast('⚠️ Tienes un paquete activo. Complétalo o cancélalo'); return; }
+  const base = getBasePrice();
+  const unitPrice = unitPriceWithFeromonas(base, state.withFeromonas);
+  const total = unitPrice * state.quantity;
+  state.cartItems.push({
+    type:'individual', modelName:getCurrentModel().name,
+    concentration:CONCENTRATIONS[selectedConc].label,
+    aroma:state.selectedAroma, withFeromonas:state.withFeromonas,
+    quantity:state.quantity, unitPrice, total
+  });
+  updateCartDrawer();
+  showToast('✓ ' + state.selectedAroma.nombre + ' añadido');
+  setTimeout(openCart, 500);
+  clearAroma();
+  state.withFeromonas = false;
+  state.quantity = 1;
+  document.getElementById('qty-display').textContent = 1;
+  updateBottomBar();
+}
+
+/* ==========================================================================
+   BODY CARE
+   ========================================================================== */
+function renderBodycare() {
+  const grid = document.getElementById('bodycare-grid');
+  grid.innerHTML = BODY_CARE.map(p => `
+    <div class="bodycare-card">
+      <img src="${p.image}" alt="${p.name}" onerror="this.style.background='#e0dcd4'">
+      <div class="bc-name">${p.name}</div>
+      <div class="bc-price">$${p.price.toFixed(2)}</div>
+      <div class="bc-qty-row">
+        <button onclick="changeBodycareQty('${p.id}',-1)">−</button>
+        <span class="bc-qty-val" id="bc-qty-${p.id}">1</span>
+        <button onclick="changeBodycareQty('${p.id}',1)">+</button>
+      </div>
+      <button class="bc-add-btn" onclick="addBodycareToCart('${p.id}')">Añadir</button>
+    </div>
+  `).join('');
+}
+function changeBodycareQty(id, delta) {
+  bodycareQty[id] = Math.max(1, (bodycareQty[id]||1) + delta);
+  document.getElementById('bc-qty-'+id).textContent = bodycareQty[id];
+}
+function addBodycareToCart(id) {
+  const product = BODY_CARE.find(p => p.id === id);
+  if (!product) return;
+  const qty = bodycareQty[id] || 1;
+  state.cartItems.push({ type:'bodycare', product, quantity:qty, total: product.price * qty });
+  updateCartDrawer();
+  showToast('✓ ' + product.name + ' añadido');
+  bodycareQty[id] = 1;
+  document.getElementById('bc-qty-'+id).textContent = 1;
+}
+
+/* ==========================================================================
+   CUPÓN
+   ========================================================================== */
+function applyCouponFrom(inputId) {
+  const val = document.getElementById(inputId).value.trim().toUpperCase();
+  if (!val) { showToast('⚠️ Ingresa un código'); return; }
+  applyCouponCode(val);
+}
+function applyCoupon() { applyCouponFrom('coupon-input'); }
+function applyCouponCode(input) {
+  if (state.appliedCoupon) { showCouponFeedback('error','⚠️','Ya tienes un código aplicado.'); return; }
+  const promo = PROMO_CODES[input];
+  if (!promo) { showCouponFeedback('error','✕','Código "' + input + '" no válido.'); return; }
+  state.appliedCoupon = {code:input, ...promo};
+  // Sincronizar ambos campos
+  ['coupon-input','coupon-input-cuerpo'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) { el.value = ''; el.disabled = true; }
+  });
+  showCouponFeedback('success','✓','Código <strong>' + input + '</strong> aplicado — ' + promo.description, true);
+  updateCartDrawer();
+  showToast('¡Código ' + input + ' aplicado!');
+}
+function removeCoupon() {
+  state.appliedCoupon = null;
+  ['coupon-input','coupon-input-cuerpo'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) { el.disabled = false; el.value = ''; }
+  });
+  ['coupon-feedback','coupon-feedback-cuerpo'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) { el.className = 'coupon-feedback'; el.style.display = 'none'; }
+  });
+  updateCartDrawer();
+  showToast('Código eliminado');
+}
+function showCouponFeedback(type, icon, msg, showRemove) {
+  const pairs = [['coupon-feedback','coupon-icon','coupon-text','btn-remove-coupon'],
+                 ['coupon-feedback-cuerpo','coupon-icon-cuerpo','coupon-text-cuerpo','btn-remove-coupon-cuerpo']];
+  pairs.forEach(([fbId, iconId, textId, removeId]) => {
+    const fb = document.getElementById(fbId);
+    if (!fb) return;
+    document.getElementById(iconId).textContent = icon;
+    document.getElementById(textId).innerHTML = msg;
+    document.getElementById(removeId).style.display = showRemove ? 'inline-block' : 'none';
+    fb.className = 'coupon-feedback ' + type;
+  });
+}
+function calculateDiscount(subtotal) {
+  if (!state.appliedCoupon) return 0;
+  const {discount, type} = state.appliedCoupon;
+  if (type === 'percent') return subtotal * (discount/100);
+  return 0;
+}
+
+/* ==========================================================================
+   WHATSAPP
+   ========================================================================== */
+function sendToWhatsApp() {
+  if (state.cartItems.length === 0) { showToast('El carrito está vacío'); return; }
+  const subtotal = state.cartItems.reduce((s,i) => s + i.total, 0);
+  const discount = calculateDiscount(subtotal);
+  const total = subtotal - discount;
+  const hasPromo = state.cartItems.some(i => i.type === 'promo');
+  const freeShip = total >= 1200 || hasPromo;
+  const shipCost = freeShip ? 0 : 149;
+  const grand = total + shipCost;
+  const fecha = new Date().toLocaleDateString('es-MX',{day:'2-digit',month:'2-digit',year:'numeric'});
+  const hora = new Date().toLocaleTimeString('es-MX',{hour:'2-digit',minute:'2-digit'});
+  let msg = '✦ *NUEVO PEDIDO — Aion Perfumes* ✦\n📅 ' + fecha + ' a las ' + hora + '\n━━━━━━━━━━━━━━━━━━━━━\n\n';
+  state.cartItems.forEach((item,i) => {
+    if (item.type === 'individual') {
+      msg += '*' + (i+1) + '. [' + item.aroma.codigo + '] ' + item.aroma.nombre + '*\n   📦 ' + item.modelName + ' · ' + item.concentration + (item.withFeromonas?' + Feromonas (+6%)':'') + ' ×' + item.quantity + '\n   💵 $' + item.total.toFixed(2) + ' MXN\n\n';
+    } else if (item.type === 'promo') {
+      msg += '*' + (i+1) + '. 🎁 PAQUETE ' + item.required + '×' + item.payFor + ' (' + item.volume + ')*\n   Frasco: ' + item.modelName + '\n   Concentración: ' + item.concentration + '\n';
+      item.aromas.forEach(a => msg += '   • ' + a.codigo + ' ' + a.nombre + ' ×' + a.quantity + (a.withFeromonas?' (+F)':'') + '\n');
+      msg += '   💵 Total: $' + item.total.toFixed(2) + ' MXN\n\n';
+    } else if (item.type === 'bodycare') {
+      msg += '*' + (i+1) + '. 🧴 ' + item.product.name + '*\n   ×' + item.quantity + '\n   💵 $' + item.total.toFixed(2) + ' MXN\n\n';
+    }
+  });
+  msg += '━━━━━━━━━━━━━━━━━━━━━\n';
+  if (state.appliedCoupon && discount > 0) msg += '🏷️ *Código: ' + state.appliedCoupon.code + '* → −$' + discount.toFixed(2) + ' MXN\n';
+  msg += freeShip ? '🚚 Envío: *GRATIS*\n' : '🚚 Envío: *$' + shipCost.toFixed(2) + ' MXN*\n';
+  msg += '💰 *TOTAL: $' + grand.toFixed(2) + ' MXN*\n━━━━━━━━━━━━━━━━━━━━━\n\n📋 _Al finalizar el pago recibirás un formulario._';
+  const url = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(msg);
+  showToast('Abriendo WhatsApp...');
+  setTimeout(() => window.open(url,'_blank'), 600);
+}
+
+/* ==========================================================================
+   TOAST / GUÍAS / MODALES
+   ========================================================================== */
+let toastTimer;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2500);
+}
+function openPromoGuide(volume, title, badge, qty) {
+  document.getElementById('promo-guide-title').textContent = title;
+  document.getElementById('promo-guide-badge').textContent = badge;
+  document.getElementById('promo-guide-qty').textContent = qty;
+  document.getElementById('promo-guide-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closePromoGuide() {
+  document.getElementById('promo-guide-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function openInfoModal(id) {
+  document.getElementById('modal-'+id+'-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  document.getElementById('info-btn-'+id).classList.remove('unseen');
+}
+function closeInfoModal(id) {
+  document.getElementById('modal-'+id+'-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { closeInfoModal('legal'); closeInfoModal('aromas'); closeCart(); closePromoGuide(); }
+});
+
+/* ==========================================================================
+   FAB ARRASTRABLE
+   ========================================================================== */
+(function() {
+  const fab = document.getElementById('cart-fab');
+  let isDragging = false, wasDragged = false, startX, startY, origLeft, origTop;
+  fab.style.top='110px'; fab.style.right='16px'; fab.style.position='fixed';
+  function getPos() { const r = fab.getBoundingClientRect(); return {left:r.left, top:r.top}; }
+  function applyPos(l,t) {
+    const maxX = window.innerWidth - fab.offsetWidth - 8;
+    const maxY = window.innerHeight - fab.offsetHeight - 8;
+    l = Math.max(8, Math.min(l, maxX)); t = Math.max(8, Math.min(t, maxY));
+    fab.style.right='auto'; fab.style.bottom='auto';
+    fab.style.left=l+'px'; fab.style.top=t+'px';
+  }
+  fab.addEventListener('mousedown', e => {
+    if (e.button!==0) return;
+    isDragging=true; wasDragged=false;
+    const p=getPos(); startX=e.clientX; startY=e.clientY; origLeft=p.left; origTop=p.top;
+    fab.classList.add('dragging'); e.preventDefault();
+  });
+  document.addEventListener('mousemove', e => {
+    if (!isDragging) return;
+    if (Math.abs(e.clientX-startX)>4 || Math.abs(e.clientY-startY)>4) wasDragged=true;
+    applyPos(origLeft+e.clientX-startX, origTop+e.clientY-startY);
+  });
+  document.addEventListener('mouseup', () => {
+    if (!isDragging) return;
+    isDragging=false; fab.classList.remove('dragging');
+    if (!wasDragged) openCart();
+  });
+  fab.addEventListener('touchstart', e => {
+    isDragging=true; wasDragged=false;
+    const t=e.touches[0]; const p=getPos();
+    startX=t.clientX; startY=t.clientY; origLeft=p.left; origTop=p.top;
+    fab.classList.add('dragging'); e.stopPropagation();
+  }, {passive:true});
+  fab.addEventListener('touchmove', e => {
+    if (!isDragging) return;
+    const t=e.touches[0];
+    if (Math.abs(t.clientX-startX)>4 || Math.abs(t.clientY-startY)>4) wasDragged=true;
+    applyPos(origLeft+t.clientX-startX, origTop+t.clientY-startY);
+    e.preventDefault();
+  }, {passive:false});
+  fab.addEventListener('touchend', () => {
+    if (!isDragging) return;
+    isDragging=false; fab.classList.remove('dragging');
+    if (!wasDragged) openCart();
+  });
+})();
+
+/* ==========================================================================
+   INICIALIZACIÓN
+   ========================================================================== */
+window.addEventListener('load', () => {
+  renderModelGrid();
+  renderBodycare();
+  updatePriceDisplay();
+  updateBottomBar();
+  updateStepper();
+  switchTab('perfumes');
+});
+</script>
+</body>
+</html>
